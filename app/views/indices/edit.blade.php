@@ -1,0 +1,1 @@
+/var/www/html/configuration/app/views/indices/edit.blade.php
