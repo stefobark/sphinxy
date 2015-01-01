@@ -1,25 +1,30 @@
-## Laravel PHP Framework
+## Sphinxy: Round 2
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+An evolution of [this](https://github.com/stefobark/config) other configurator I started building before learning about Laravel. Now, I'm taking another shot at it. Keeping all configuration settings in a database. Reorganizing stuff. Learning more. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+###To get started###
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+Put this onto your own machine. Should help to keep track of your configuration files (and should help you understand Sphinx configuration basics as you build). Create, update, delete configuration files!
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+1. Clone this into some directory:
+ * ```git clone https://github.com/stefobark/config.git```
+2. Do you have composer installed? If not, then [install it](https://getcomposer.org/doc/00-intro.md).
+3. Then, from the directory:
+ * ```composer install```
+4. Do you have MySQL running? If not, get it going.
+ * create a database called ```forge```
+5. Then:
+ * ```php artistan migrate```
+6. And.. start doing stuff. Submit pull requests. Help me out. Give me suggestions. I'm learning as I go.
 
-## Official Documentation
+Tweet at me: @steven_barker. Or, email me at steven.j.barker.jr@gmail.com
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+###More things to do###
 
-### Contributing To Laravel
+1. Add ```indexer``` config block.
+ * My last try didn't include any indexer settings, I just let Sphinx go with the defaults.
+2. Validation!
+ * Right now, I'm just checking if variables exist (in the view) and if they don't, I'm saying: **XXX MUST EXIST**
+3. Much more. Things I'm not even aware of yet.
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+If you're interested, I'm keeping all my thoughts on this publicly editable [google doc](https://docs.google.com/document/d/1UlJA5j47cxIzopHNBfb7GVt4AgAXqqU71IU5Kji6VyY/edit) 
