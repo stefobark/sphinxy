@@ -23,17 +23,17 @@
 				</div>
 			  	<div class="navbar-collapse">
 					<ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
-				   	<li><a href="index.php">New Index</a></li>
+				   	<li><a href="/">New Index</a></li>
 				  		<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Sources<span class="caret"></span></a>
 						 <!--if they click these links, it will send them to index or source and specify 'MySQL' type-->
 						 		<ul class="dropdown-menu" role="menu">
-							  		<li><a href="plainconfig.php?source_type=mysql">Add MySQL Source</a></li>
-							  		<li><a href="plainconfig.php?source_type=pgsql">Add PostgreSQL Source</a></li>
-							  		<li><a href="plainconfig.php?source_type=mssql">Add MSSQL Source</a></li>
-							  		<li><a href="plainconfig.php?source_type=xmlpipe2">Add XML Source</a></li>
-							  		<li><a href="plainconfig.php?source_type=tsvpipe">Add TSV Source</a></li>
-							  		<li><a href="plainconfig.php?source_type=odbc">Add ODBC Source</a></li>
+							  		<li><a href="/sources/create?source_type=mysql">Add MySQL Source</a></li>
+							  		<li><a href="/sources/create?source_type=pgsql">Add PostgreSQL Source</a></li>
+							  		<li><a href="/sources/create?source_type=mssql">Add MSSQL Source</a></li>
+							  		<li><a href="p/sources/create?source_type=xmlpipe2">Add XML Source</a></li>
+							  		<li><a href="/sources/create?source_type=tsvpipe">Add TSV Source</a></li>
+							  		<li><a href="/sources/create?source_type=odbc">Add ODBC Source</a></li>
 						 		</ul>
 						</li>
 						<li><a href="searchd_options.php">(re)Set Searchd Options</a></li>
@@ -42,6 +42,7 @@
 					</ul>
 			  	</div><!--/.nav-collapse -->
 			</div>
+		</div>
 		<div class="container">
 		@yield('content')
 		</div>

@@ -20,6 +20,8 @@ Route::get('chooseSource', 'SourcesController@chooseSource');
 
 Route::post('sources/store', 'SourcesController@store');
 
+Route::post('indices/store', 'IndicesController@store');
+
 Route::resource('indices', 'IndicesController');
 
 Route::resource('sources', 'SourcesController');

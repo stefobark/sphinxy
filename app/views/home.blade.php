@@ -39,10 +39,10 @@
 				<div class="col-md-3">
 					<h4>Choose your index type:</h4>
 					{{ Form::open(array('action' => 'IndicesController@create', 'method'=>'get')) }}
-						{{ Form::radio("index_type", "plain") }} Plain<br />
-						{{ Form::radio("index_type", "rt") }} Realtime<br />
-						{{ Form::radio('index_type', "template") }} Template<br />
-						{{ Form::radio('index_type', "distributed") }} Distributed<br />
+						{{ Form::radio("type", "plain1") }} Plain<br />
+						{{ Form::radio("type", "rt") }} Realtime<br />
+						{{ Form::radio('type', "template") }} Template<br />
+						{{ Form::radio('type', "distributed") }} Distributed<br />
 						{{ Form::submit("Submit") }}
 					{{ Form::close() }}
 					</form>

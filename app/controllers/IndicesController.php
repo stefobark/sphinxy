@@ -10,8 +10,12 @@ class IndicesController extends \BaseController {
 	public function index()
 	{
 		$indices = Index::all();
-
-		return View::make('indices.index', compact('indices'));
+		$passIndices = $indices->toArray();
+	
+		$sources = Source::all();
+		$passSources = $sources->toArray();
+	
+		return View::make('indices.index', compact(array('passIndices', 'passSources')));
 	}
 
 	/**
@@ -21,13 +25,16 @@ class IndicesController extends \BaseController {
 	 */
 	public function create()
 	{
-		$index_type = Input::get('index_type');
+		$sources = Source::all();
+		$passSources = $sources->toArray();
 		
-		if ($index_type == 'plain'){
+		$type = Input::get('type');
+		
+		if ($type == 'plain1'){
 		return Redirect::action('SourcesController@chooseSource');
 		}
 		
-		return View::make('indices.create', array('index_type'=>$index_type));
+		return View::make('indices.create', array('type'=>$type, 'passSources'=>$passSources));
 	}
 
 	/**
@@ -38,31 +45,31 @@ class IndicesController extends \BaseController {
 	public function store()
 	{
 	$index = new Index;
-	$index->i_name = Input::get('i_name');
-	$index->i_type = Input::get('i_type');
-	$index->agent = Input::get('agent');
-	$index->agent_persistent = Input::get('agent_persistent');
-	$index->agent_blackhole = Input::get('agent_blackhole');
-	$index->agent_connect_timeout = Input::get('agent_connect_timeout');
-	$index->agent_query_timeout = Input::get('agent_query_timeout');
-	$index->ha_strategy = Input::get('ha_strategy');
-	$index->ha_period_karma = Input::get('ha_period_karma');
-	$index->ha_ping_interval = Input::get('ha_ping_interval');
-	$index->i_s_name = Input::get('i_s_name');
-	$index->i_path = Input::get('i_path');
-	$index->docinfo = Input::get('docinfo');
-	$index->i_sp = Input::get('i_sp');
-	$index->i_zones = Input::get('i_zones');
-	$index->html_strip = Input::get('html_strip');
-	$index->html_index_attrs = Input::get('html_index_attrs');
-	$index->morphology = Input::get('morphology');
-	$index->min_stemming_len = Input::get('min_stemming_len');
-	$index->stopwords = Input::get('stopwords');
-	$index->wordforms = Input::get('wordforms');
-	$index->embedded_limit = Input::get('embedded_limit');
-	$index->exceptions = Input::get('exceptions');
-	$index->rt_field = Input::get('rt_field');
-	$index->rt_attr = Input::get('rt_attr');
+		$index->i_name = Input::get('i_name');
+		$index->type = Input::get('type');
+		$index->agent = Input::get('agent');
+		$index->agent_persistent = Input::get('agent_persistent');
+		$index->agent_blackhole = Input::get('agent_blackhole');
+		$index->agent_connect_timeout = Input::get('agent_connect_timeout');
+		$index->agent_query_timeout = Input::get('agent_query_timeout');
+		$index->ha_strategy = Input::get('ha_strategy');
+		$index->ha_period_karma = Input::get('ha_period_karma');
+		$index->ha_ping_interval = Input::get('ha_ping_interval');
+		$index->source = Input::get('source');
+		$index->path = Input::get('path');
+		$index->docinfo = Input::get('docinfo');
+		$index->index_sp = Input::get('index_sp');
+		$index->index_zones = Input::get('index_zones');
+		$index->html_strip = Input::get('html_strip');
+		$index->html_index_attrs = Input::get('html_index_attrs');
+		$index->morphology = Input::get('morphology');
+		$index->min_stemming_len = Input::get('min_stemming_len');
+		$index->stopwords = Input::get('stopwords');
+		$index->wordforms = Input::get('wordforms');
+		$index->embedded_limit = Input::get('embedded_limit');
+		$index->exceptions = Input::get('exceptions');
+		$index->rt_field = Input::get('rt_field');
+		$index->rt_attr = Input::get('rt_attr');
 	$index->save();
 	
 
