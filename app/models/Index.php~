@@ -7,7 +7,7 @@ class Index extends \Eloquent {
 		// 'title' => 'required'
 	];
 
-	public function conf_index()
+	public function indexex()
     {
         return $this->belongsTo('ConfIndex');
     }

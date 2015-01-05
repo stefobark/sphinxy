@@ -15,6 +15,7 @@ class CreateSourcesTable extends Migration {
 		Schema::create('sources', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('conf_source');
 			$table->text('s_name');
 			$table->text('sql_host');
 			$table->integer('sql_port');

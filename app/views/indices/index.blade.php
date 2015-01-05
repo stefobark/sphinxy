@@ -1,10 +1,12 @@
 @extends('layout')
 @section('content')
+
 <div class="row" style="margin-top:100px">
-	<div class="col-md-4">
+	<div class="col-md-9">
 		<h2>
 			<div class="btn btn-default"><a href="/">Create another index</a></div>
 			<div class="btn btn-default"><a href="/sources/create">Create another source</a></div>
+			<div class="btn btn-default"><span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span><a href="/searchds/create">&nbsp;&nbsp;Define searchd settings</a>&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span></div>
 		</h2>
 	</div>
 </div>

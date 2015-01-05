@@ -25,13 +25,19 @@ class IndicesController extends \BaseController {
 	 */
 	public function create()
 	{
+	
+	
 		$sources = Source::all();
 		$passSources = $sources->toArray();
 		
 		$type = Input::get('type');
+		$conf_id = Input::get('conf_id');
+		$conf_title = Input::get('conf_title');
 		
 		if ($type == 'plain1'){
-		return Redirect::action('SourcesController@chooseSource');
+			$conf_id = Input::get('conf_id');
+			$conf_title = Input::get('conf_title');
+			return Redirect::action('SourcesController@chooseSource', array('conf_id'=>$conf_id, 'conf_title'=>$conf_title));
 		}
 		
 		return View::make('indices.create', array('type'=>$type, 'passSources'=>$passSources));

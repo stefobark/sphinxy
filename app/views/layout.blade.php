@@ -10,6 +10,10 @@
 				 background-color: #FFF;
 				 border-color: #E7E7E7;
 			}
+			.redish {
+				 color: #FF6666
+			;
+			}
 		</style>
 
 	</head>
@@ -19,24 +23,11 @@
 		<div class="navbar navbar-default navbar-fixed-top" role="navigation" style="height:75px">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#"><img src='http://stevenjbarker.comoj.com/1guysphinx.png'>&nbsp;&nbsp;sphinx.conf maker</a>
+					<a class="navbar-brand" href="#"><img src='http://stevenjbarker.comoj.com/1guysphinx.png'>&nbsp;&nbsp;Sphinxy</a>
 				</div>
 			  	<div class="navbar-collapse">
 					<ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
-				   	<li><a href="/">New Index</a></li>
-				  		<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Sources<span class="caret"></span></a>
-						 <!--if they click these links, it will send them to index or source and specify 'MySQL' type-->
-						 		<ul class="dropdown-menu" role="menu">
-							  		<li><a href="/sources/create?source_type=mysql">Add MySQL Source</a></li>
-							  		<li><a href="/sources/create?source_type=pgsql">Add PostgreSQL Source</a></li>
-							  		<li><a href="/sources/create?source_type=mssql">Add MSSQL Source</a></li>
-							  		<li><a href="/sources/create?source_type=xmlpipe2">Add XML Source</a></li>
-							  		<li><a href="/sources/create?source_type=tsvpipe">Add TSV Source</a></li>
-							  		<li><a href="/sources/create?source_type=odbc">Add ODBC Source</a></li>
-						 		</ul>
-						</li>
-						<li><a href="searchd_options.php">(re)Set Searchd Options</a></li>
+						<li><a href="/">New Configuration</a></li>
 						<li><a href="final.php">Config (what you have so far)</a></li>
 						<li><a href="about.php">About</a></li>
 					</ul>

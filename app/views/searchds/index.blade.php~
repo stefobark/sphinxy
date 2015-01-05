@@ -1,17 +1,13 @@
 @extends('layout')
 @section('content')
-<style>
-.redish {
-    color: #FF6666
-;
-}
-</style>
+
 <div class="row" style="margin-top:100px">
-	<div class="col-md-9">
+	<div class="col-md-12">
 		<h2>
 			<div class="btn btn-default"><a href="/">Create another index</a></div>
 			<div class="btn btn-default"><a href="/sources/create">Create another source</a></div>
-			<div class="btn btn-default"><span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span><a href="/searchds/create">&nbsp;&nbsp;Define searchd settings</a>&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span></div>
+			<div class="btn btn-default"><a href="/searchds/create">Redefine searchd settings</a></div>
+			<div class="btn btn-default"><span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"><a href="/indexers/create"></span>&nbsp;&nbsp;Define indexer settings</a>&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span></a></div>
 		</h2>
 	</div>
 </div>
@@ -49,5 +45,20 @@
 				@endforeach
 				} <br /></p>
 			@endforeach
-</div>
+	</div>
+	<div class="col-md-4">
+		<h2> Searchd: </h2>
+		<p>searchd {
+		<br />
+				@foreach ($passSearchds as $sdKey => $sdValue)
+			
+			
+					@if(!empty($sdValue) AND $sdKey != 'id' AND $sdKey != 'created_at' AND $sdKey != 'updated_at')
+						{{ $sdKey }} = {{ $sdValue }} <br />
+					@endif
+				 
+			@endforeach
+			}
+</p>
+	</div>
 @stop

@@ -13,7 +13,10 @@ class SourcesController extends \BaseController {
 		$sources = Source::all();
 		$passSources = $sources->toArray();
 		
-		return View::make('sources.index')->with('sources', $passSources);
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_if');
+		
+		return View::make('sources.index', array('passSources'=>$passSources, 'conf_id'=>$conf_id, 'conf_title'=>$conf_title));
 		
 	}
 
@@ -25,14 +28,18 @@ class SourcesController extends \BaseController {
 	 */
 	public function chooseSource()
 	{
-
-		return View::make('sources.chooseSource');
+		$conf_id = Input::Get('conf_id');
+		$conf_title = Input::get('conf_title');
+		return View::make('sources.chooseSource', array('conf_id'=>$conf_id, 'conf_title'=>$conf_title));
 	}
 	
 	public function create()
 	{
 	$source_type = Input::get('source_type');
-		return View::make('sources.create')->with('source_type', $source_type);
+	$conf_id = Input::get('conf_id');
+	$conf_title = Input::get('conf_title');
+	
+		return View::make('sources.create', array('source_type'=>$source_type, 'conf_id'=>$conf_id, 'conf_title'=>$conf_title));
 
 	}
 
@@ -44,6 +51,11 @@ class SourcesController extends \BaseController {
 	 */
 	public function store()
 	{
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+		
+		$conf = Conf::orderby('created_at', 'desc')->first();
+		
 		$source = new Source;
 		$source->s_name = Input::get('s_name');
 		$source->sql_host = Input::get('sql_host');
@@ -67,7 +79,14 @@ class SourcesController extends \BaseController {
 		$source->xml_fixup_utf8 = Input::get('xml_fixup_utf8');
 		$source->tsvpipe_command = Input::get('tsvpipe_command');
 		$source->save();
-		return Redirect::action('SourcesController@index');
+		
+		$confSource = new ConfSource();
+		$confSource->source_id = $source->id;
+		$confSource->conf_id = $conf_id;
+		$confSource->save();
+
+		
+		return Redirect::action('SourcesController@index', array('conf_id'=>$conf_id, 'conf_title'=>$conf_title));
 
 	}
 

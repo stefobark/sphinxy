@@ -2,6 +2,10 @@
 @section('content')
 <div class="row" style="margin-top:100px">
 <div class="col-md-4">
+
+<h3> {{ $conf_title }}.conf </h3>
+<br/>
+
 {{ Form::open(array('action'=>'SourcesController@store', 'method'=>'post')) }}
 	<div class='form-group'>
 		<input type='hidden' name='source_type' value="{{ $source_type }}">
@@ -142,7 +146,8 @@
 				</div>
 
     @endif
-
+{{ Form::hidden('conf_id', $conf_id) }}
+			{{ Form::hidden('conf_title', $conf_title) }}
 		<div class="form-group">
 			<input type="submit" value="Submit">
 		</div>

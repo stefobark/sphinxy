@@ -20,10 +20,18 @@ Route::get('chooseSource', 'SourcesController@chooseSource');
 
 Route::post('sources/store', 'SourcesController@store');
 
+Route::post('Confs/new', 'ConfsController@new');
+
 Route::post('indices/store', 'IndicesController@store');
+
+Route::post('searchds/store', 'SearchdsController@store');
+
+Route::post('indexers/store', 'IndexersController@store');
 
 Route::resource('indices', 'IndicesController');
 
 Route::resource('sources', 'SourcesController');
 
 Route::resource('searchds', 'SearchdsController');
+
+Route::resource('indexers', 'IndexersController');

@@ -2,7 +2,7 @@
 @section('content')
 <div class="row" style="margin-top:100px">
 <div class="col-md-4">
-<h2>Searchd Options:</h2>
+<h2>Searchd Options</h2>
 		{{ Form::open(array('action'=>'SearchdsController@store', 'method'=>'post')) }}
 			<div class='form-group'>
 				<label for='listen'><a href='http://sphinxsearch.com/docs/current.html#conf-listen'>Where (and how) to listen (mandatory)</a></label><br />

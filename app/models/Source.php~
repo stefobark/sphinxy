@@ -4,6 +4,6 @@ class Source extends \Eloquent {
 
 	public function conf_source()
     {
-        return $this->belongsTo('ConfSource');
+        return $this->belongsTo('ConfSources');
     }
 }

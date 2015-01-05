@@ -1,22 +1,18 @@
 @extends('layout')
 @section('content')
-<style>
-.redish {
-    color: #FF6666
-;
-}
-</style>
+
 <div class="row" style="margin-top:100px">
-	<div class="col-md-9">
+	<div class="col-md-8">
 		<h2>
 			<div class="btn btn-default"><a href="/">Create another index</a></div>
 			<div class="btn btn-default"><a href="/sources/create">Create another source</a></div>
-			<div class="btn btn-default"><span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span><a href="/searchds/create">&nbsp;&nbsp;Define searchd settings</a>&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span></div>
+			<div class="btn btn-default"><a href="/searchds/create">Redefine searchd settings</a></div>
+			<div class="btn btn-default"><a href="/indexers/create">Redefine indexer settings</a></div>
 		</h2>
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-4">
+	<div class="col-md-2">
 	<h2>Indexes:</h2>
 		@foreach ($passIndices as $index)
 		<p>index {{ $index['i_name'] }}
@@ -33,7 +29,7 @@
 			} <br /></p>
 		@endforeach
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-2">
 		<h2> Sources: </h2>
 		@foreach ($passSources as $source)
 			<p>source {{ $source['s_name'] }}
@@ -49,5 +45,35 @@
 				@endforeach
 				} <br /></p>
 			@endforeach
-</div>
+	</div>
+	<div class="col-md-2">
+		<h2> Searchd: </h2>
+		<p>searchd {
+		<br />
+				@foreach ($passSearchds as $sdKey => $sdValue)
+			
+			
+					@if(!empty($sdValue) AND $sdKey != 'id' AND $sdKey != 'created_at' AND $sdKey != 'updated_at')
+						{{ $sdKey }} = {{ $sdValue }} <br />
+					@endif
+				 
+			@endforeach
+			}
+</p>
+
+<div class="col-md-2">
+		<h2> Indexer: </h2>
+		<p>indexer {
+		<br />
+				@foreach ($passIndexers as $iKey => $iValue)
+			
+			
+					@if(!empty($iValue) AND $iKey != 'id' AND $iKey != 'created_at' AND $iKey != 'updated_at')
+						{{ $iKey }} = {{ $iValue }} <br />
+					@endif
+				 
+			@endforeach
+			}
+</p>
+
 @stop
