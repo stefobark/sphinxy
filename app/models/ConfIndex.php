@@ -6,7 +6,7 @@ class ConfIndex extends Eloquent {
     
     public function indexes()
     {
-        return $this->hasMany('Index');
+        return $this->hasMany('Index', 'id');
     }
 	
 	 public function conf()
@@ -14,6 +14,6 @@ class ConfIndex extends Eloquent {
         return $this->belongsTo('Conf');
     }
 }
-}
+
 
 ?>

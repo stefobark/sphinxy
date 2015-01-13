@@ -10,19 +10,22 @@ class IndexersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$indices = Index::all();
-		$passIndices = $indices->toArray();
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
 	
-		$sources = Source::all();
-		$passSources = $sources->toArray();
-		
-		$searchds = Searchd::find(1);
-		$passSearchds = $searchds->toArray();
-		
-		$indexers = Indexer::find(1);
-		$passIndexers = $indexers->toArray();
+		$passIndices = DB::table('indices')->join('conf_indexes', 'indices.id', '=', 'index_id')->where('conf_id', '=', $conf_id)->get();
 	
-		return View::make('indexers.index', compact(array('passIndices', 'passSources', 'passSearchds', 'passIndexers')));
+		$passSources = DB::table('sources')->join('conf_sources', 'sources.id', '=', 'source_id')->where('conf_id', '=', $conf_id)->get();
+		
+		$passSearchds = DB::table('searchds')->join('confs', 'searchds.id', '=', 'searchd_id')->where('confs.id', '=', $conf_id)->get();
+		
+		$passIndexers = DB::table('indexers')->join('confs', 'indexers.id', '=', 'indexer_id')->where('confs.id', '=', $conf_id)->get();
+
+	
+		$queries = DB::getQueryLog();
+		$last_query = end($queries);
+	
+		return View::make('indexers.index', compact(array('passIndices', 'passSources', 'passSearchds', 'passIndexers', 'conf_id', 'conf_title', 'queries')));
 	}
 
 	/**
@@ -33,13 +36,14 @@ class IndexersController extends \BaseController {
 	 */
 	public function create()
 	{
-		$indices = Index::all();
-		$passIndices = $indices->toArray();
 	
-		$sources = Source::all();
-		$passSources = $sources->toArray();
-	
-		return View::make('indexers.create', compact(array('passIndices', 'passSources')));
+		
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+
+		return View::make('indexers.create', compact('conf_title', 'conf_id'));
+		
+		
 	}
 
 	/**
@@ -51,18 +55,9 @@ class IndexersController extends \BaseController {
 	public function store()
 	{
 	
-	if($indexer = Indexer::find('1'))
-	{
-		$indexer = Indexer::find('1');
-			$indexer->mem_limit = Input::get('mem_limit');
-			$indexer->max_iops = Input::get('max_iops');
-			$indexer->max_iosize = Input::get('max_iosize');
-			$indexer->max_xmlpipe2_field = Input::get('max_xmlpipe2_field');
-			$indexer->write_buffer = Input::get('write_buffer');
-			$indexer->max_file_field_buffer = Input::get('max_file_field_buffer');
-			$indexer->on_file_field_error = Input::get('on_file_field_error');
-		$indexer->save();
-	} else {
+	$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+	
 		$indexer = new Indexer;
 			$indexer->mem_limit = Input::get('mem_limit');
 			$indexer->max_iops = Input::get('max_iops');
@@ -72,8 +67,12 @@ class IndexersController extends \BaseController {
 			$indexer->max_file_field_buffer = Input::get('max_file_field_buffer');
 			$indexer->on_file_field_error = Input::get('on_file_field_error');
 		$indexer->save();
-		}
-		return Redirect::route('indexers.index');
+		
+		$conf = Conf::where('id', '=', "$conf_id")->first();
+		$conf->indexer_id = $indexer->id;
+		$conf->save();
+		
+		return Redirect::route('indexers.index', compact('conf_id', 'conf_title'));
 	}
 
 	/**
@@ -95,9 +94,15 @@ class IndexersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
-		//
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+		$id = Input::get('id');
+
+		$indexers = Indexer::find($id);
+		
+		return View::make('indexers.edit', compact('conf_title', 'conf_id', 'indexers'));
 	}
 
 	/**
@@ -109,7 +114,54 @@ class IndexersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+
+		
+		$indexer = Indexer::find($id);
+		
+		if(!empty(Input::get('mem_limit'))){
+		
+			$indexer->mem_limit = Input::get('mem_limit');
+		}
+		
+		if(!empty(Input::get('max_iops'))){
+		
+			$indexer->max_iops = Input::get('max_iops');
+		}
+		
+		if(!empty(Input::get('max_iosize'))){
+		
+			$indexer->max_iosize = Input::get('max_iosize');
+		}
+		
+		if(!empty(Input::get('max_xmlpipe2_field'))){
+		
+			$indexer->max_xmlpipe2_field = Input::get('max_xmlpipe2_field');
+			
+		}
+		
+		if(!empty(Input::get('write_buffer'))){
+		
+			$indexer->write_buffer = Input::get('write_buffer');
+			
+		}
+		
+		if(!empty(Input::get('max_file_field_buffer'))){
+		
+			$indexer->max_file_field_buffer = Input::get('max_file_field_buffer');
+			
+		}
+		
+		if(!empty(Input::get('on_file_field_error'))){
+		
+			$indexer->on_file_field_error = Input::get('on_file_field_error');
+		
+		}
+		$indexer->update();
+		
+		return Redirect::route('indexers.index', compact('conf_id', 'conf_title'));
 	}
 
 	/**

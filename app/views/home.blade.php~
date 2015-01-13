@@ -1,21 +1,13 @@
 @extends('layout')
 @section('content')
 		<div class="row" style='margin-top:100px!important'>
-			<div class="col-md-3"></div>
-				<div class="col-md-1"></div>
-				<div class="col-md-5">
-					
-					{{ Form::open(array('action' => 'ConfsController@new', 'method'=>'post')) }}
-
-					<h2>New configuration:</h2>
-					{{ Form::label('title', 'Title') }}
-						{{ Form::text('title') }}
-						
-						{{ Form::submit("Submit") }}
-					{{ Form::close() }}
-					</form>
+			<div class="col-md-12"></div>
+				<h2 class="text-center">Welcome to Sphinxy</h2>
+				<p class="text-center">Sphinxy is a Sphinx Search Configurator.<br /> It show you how to configure Sphinx.<br /> Give it a try.</p>
+				<p class="text-center"><a href="confs/new">Create a new configuration</a></p>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+@stop

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateConfSourceTable extends Migration {
+class CreateSearchdsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,15 @@ class CreateConfSourceTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('conf_sources', function(Blueprint $table)
+		Schema::create('searchds', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('source_id')->unsigned()->index()->nullable;
-			$table->foreign('source_id')->references('id')->on('sources')->onDelete('cascade')->onUpdate('cascade');
 			$table->integer('conf_id')->unsigned()->index();
 			$table->foreign('conf_id')->references('id')->on('confs')->onDelete('cascade')->onUpdate('cascade');
+			$table->text('listen');
+			$table->text('log');
+			$table->text('query_log');
+			$table->text('pid');
 			$table->timestamps();
 		});
 	}
@@ -31,7 +33,7 @@ class CreateConfSourceTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('conf_sources');
+		Schema::drop('searchds');
 	}
 
 }

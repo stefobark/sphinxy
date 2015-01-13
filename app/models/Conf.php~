@@ -2,10 +2,12 @@
 
 class Conf extends Eloquent {
 
-    public function conf_source()
+
+    public function indices()
     {
-        return $this->hasOne('ConfSource');
+        return $this->hasManyThrough('Index', 'ConfIndex', 'conf_id', 'index_id');
     }
+
     
      public function conf_index()
     {

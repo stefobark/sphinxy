@@ -10,11 +10,12 @@ class SourcesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$sources = Source::all();
-		$passSources = $sources->toArray();
-		
+	
 		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		
+		$passSources = DB::table('sources')->join('conf_sources', 'sources.id', '=', 'source_id')->where('conf_id', '=', $conf_id)->get();
+		
 		
 		return View::make('sources.index', array('passSources'=>$passSources, 'conf_id'=>$conf_id, 'conf_title'=>$conf_title));
 		
@@ -53,8 +54,6 @@ class SourcesController extends \BaseController {
 	{
 		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
-		
-		$conf = Conf::orderby('created_at', 'desc')->first();
 		
 		$source = new Source;
 		$source->s_name = Input::get('s_name');

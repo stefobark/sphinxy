@@ -7,9 +7,10 @@ class Index extends \Eloquent {
 		// 'title' => 'required'
 	];
 
-	public function indexex()
+	public function conf_index()
     {
-        return $this->belongsTo('ConfIndex');
+    		
+        return $this->belongsToMany('ConfIndex', 'index_id');
     }
     
 	// Don't forget to fill this array

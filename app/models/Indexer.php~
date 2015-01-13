@@ -1,5 +1,9 @@
 <?php
+class Indexer extends Eloquent {
 
-class Indexer extends \Eloquent {
-	protected $fillable = [];
+public function conf()
+    {
+        return $this->belongsTo('Conf');
+    }
+    
 }

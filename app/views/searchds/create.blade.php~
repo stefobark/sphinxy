@@ -1,8 +1,15 @@
 @extends('layout')
 @section('content')
 <div class="row" style="margin-top:100px">
+
+	<div class="col-md-12">
+		<h2>{{ $conf_title }}.conf</h2>
+		{{ var_dump($queries) }}
+	</div>
+</div>
+<div class="row">
 <div class="col-md-4">
-<h2>Searchd Options</h2>
+<h2>Searchd Options:</h2>
 		{{ Form::open(array('action'=>'SearchdsController@store', 'method'=>'post')) }}
 			<div class='form-group'>
 				<label for='listen'><a href='http://sphinxsearch.com/docs/current.html#conf-listen'>Where (and how) to listen (mandatory)</a></label><br />
@@ -23,6 +30,8 @@
 			<div class='form-group'>
 				<input type='submit' value='Submit'>
 			</div>
+				{{ Form::hidden('conf_id', $conf_id) }}
+	{{ Form::hidden('conf_title', $conf_title) }}
 		{{ Form::close() }}
 		</div>
 		</div>

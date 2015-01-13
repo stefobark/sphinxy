@@ -5,6 +5,13 @@
 		<link href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet'>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				 $('[data-toggle="popover"]').popover({
+					  placement : 'top'
+				 });
+			});
+			</script>
 		<style>
 			.navbar-default {
 				 background-color: #FFF;
@@ -15,6 +22,8 @@
 			;
 			}
 		</style>
+		
+		
 
 	</head>
 
@@ -28,7 +37,6 @@
 			  	<div class="navbar-collapse">
 					<ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
 						<li><a href="/">New Configuration</a></li>
-						<li><a href="final.php">Config (what you have so far)</a></li>
 						<li><a href="about.php">About</a></li>
 					</ul>
 			  	</div><!--/.nav-collapse -->

@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function()
 {
 	return View::make('home');
@@ -18,15 +19,22 @@ Route::get('/', function()
 
 Route::get('chooseSource', 'SourcesController@chooseSource');
 
+Route::get('Confs/new', 'ConfsController@create');
+Route::get('Confs/all', 'ConfsController@index');
+Route::get('Confs/save', 'ConfsController@saveConf');
+
 Route::post('sources/store', 'SourcesController@store');
 
-Route::post('Confs/new', 'ConfsController@store');
+Route::post('Confs/newIndex', 'ConfsController@store');
+Route::get('Confs/newIndex', 'ConfsController@store');
 
 Route::post('indices/store', 'IndicesController@store');
 
 Route::post('searchds/store', 'SearchdsController@store');
 
 Route::post('indexers/store', 'IndexersController@store');
+Route::get('indexers/edit', 'IndexersController@edit');
+Route::put('indexers/update/{$id}', 'IndexersController@update');
 
 Route::resource('indices', 'IndicesController');
 

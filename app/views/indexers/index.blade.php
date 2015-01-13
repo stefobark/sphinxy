@@ -2,12 +2,14 @@
 @section('content')
 
 <div class="row" style="margin-top:100px">
-	<div class="col-md-8">
+	<div class="col-md-12 text-center">
+	<h2>{{ $conf_title }}.conf &nbsp; <div class="btn btn-default"><a href="/Confs/save?conf_id={{$conf_id}}&conf_title={{$conf_title}}">Save Configuration</a></div>
+</h2>
 		<h2>
-			<div class="btn btn-default"><a href="/">Create another index</a></div>
-			<div class="btn btn-default"><a href="/sources/create">Create another source</a></div>
-			<div class="btn btn-default"><a href="/searchds/create">Redefine searchd settings</a></div>
-			<div class="btn btn-default"><a href="/indexers/create">Redefine indexer settings</a></div>
+			<div class="btn btn-default"><a href="/indices/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Create another index</a></div>
+			<div class="btn btn-default"><a href="/sources/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Create another source</a></div>
+			<div class="btn btn-default"><a href="/searchds/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Redefine searchd settings</a></div>
+			<div class="btn btn-default"><span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span><a href="/indexers/edit?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$passIndexers[0]->indexer_id}}">&nbsp;&nbsp;Redefine indexer settings</a>&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span></a></div>
 		</h2>
 	</div>
 </div>
@@ -15,8 +17,8 @@
 	<div class="col-md-3">
 	<h2>Indexes:</h2>
 		@foreach ($passIndices as $index)
-		<p>index {{ $index['i_name'] }}
-			@if(empty($index['i_name']))
+		<p>index {{ $index->i_name }}
+			@if(empty($index->i_name))
 				<strong>MUST NAME INDEX!!!</strong>
 			@endif
 		 	{
@@ -32,8 +34,8 @@
 	<div class="col-md-3">
 		<h2> Sources: </h2>
 		@foreach ($passSources as $source)
-			<p>source {{ $source['s_name'] }}
-				@if(empty($source['s_name']))
+			<p>source {{ $source->s_name }}
+				@if(empty($source->s_name))
 					<strong>MUST NAME SOURCE!!!</strong>
 				@endif
 			 {
@@ -50,7 +52,7 @@
 		<h2> Searchd: </h2>
 		<p>searchd {
 		<br />
-				@foreach ($passSearchds as $sdKey => $sdValue)
+				@foreach ($passSearchds[0] as $sdKey => $sdValue)
 			
 			
 					@if(!empty($sdValue) AND $sdKey != 'id' AND $sdKey != 'created_at' AND $sdKey != 'updated_at')
@@ -65,7 +67,7 @@
 		<h2> Indexer: </h2>
 		<p>indexer {
 		<br />
-				@foreach ($passIndexers as $iKey => $iValue)
+				@foreach ($passIndexers[0] as $iKey => $iValue)
 			
 			
 					@if(!empty($iValue) AND $iKey != 'id' AND $iKey != 'created_at' AND $iKey != 'updated_at')

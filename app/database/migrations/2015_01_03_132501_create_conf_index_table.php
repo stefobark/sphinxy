@@ -17,6 +17,8 @@ class CreateConfIndexTable extends Migration {
 			$table->increments('id');
 			$table->integer('index_id')->unsigned()->index();
 			$table->foreign('index_id')->references('id')->on('indices')->onDelete('cascade')->onUpdate('cascade');
+			$table->integer('conf_id')->unsigned()->index();
+			$table->foreign('conf_id')->references('id')->on('confs')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}

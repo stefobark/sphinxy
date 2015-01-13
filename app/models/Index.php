@@ -9,7 +9,8 @@ class Index extends \Eloquent {
 
 	public function conf_index()
     {
-        return $this->belongsTo('ConfIndex');
+    		
+        return $this->belongsToMany('ConfIndex', 'index_id');
     }
     
 	// Don't forget to fill this array

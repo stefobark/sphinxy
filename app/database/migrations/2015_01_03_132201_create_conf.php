@@ -15,6 +15,10 @@ class CreateConf extends Migration {
 		Schema::create('confs', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('searchd_id')->unsigned()->index()->nullable();
+			$table->foreign('searchd_id')->references('id')->on('searchds')->onDelete('cascade')->onUpdate('cascade');
+			$table->integer('indexer_id')->unsigned()->index()->nullable();
+			$table->foreign('indexer_id')->references('id')->on('indexers')->onDelete('cascade')->onUpdate('cascade');
 			$table->string('title');
 			
 			$table->timestamps();

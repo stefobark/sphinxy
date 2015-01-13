@@ -15,14 +15,16 @@ class CreateIndexersTable extends Migration {
 		Schema::create('indexers', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('mem_limit')->nullable;
-			$table->string('max_iops')->nullable;
-			$table->string('max_iosize')->nullable;
-			$table->string('max_xmlpipe2_field')->nullable;
-			$table->string('write_buffer')->nullable;
-			$table->string('max_file_field_buffer')->nullable;
-			$table->string('on_file_field_error')->nullable;
-			$table->string('lemmatizer_cache')->nullable;
+			$table->integer('conf_id')->unsigned()->index()->nullable;
+			$table->foreign('conf_id')->references('id')->on('confs')->onDelete('cascade')->onUpdate('cascade');
+			$table->string('mem_limit')->nullable();
+			$table->string('max_iops')->nullable();
+			$table->string('max_iosize')->nullable();
+			$table->string('max_xmlpipe2_field')->nullable();
+			$table->string('write_buffer')->nullable();
+			$table->string('max_file_field_buffer')->nullable();
+			$table->string('on_file_field_error')->nullable();
+			$table->string('lemmatizer_cache')->nullable();
 			$table->timestamps();
 		});
 	}

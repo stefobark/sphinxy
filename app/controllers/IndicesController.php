@@ -9,13 +9,21 @@ class IndicesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$indices = Index::all();
-		$passIndices = $indices->toArray();
+		
 	
-		$sources = Source::all();
-		$passSources = $sources->toArray();
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+		
+		$passIndices = DB::table('indices')->join('conf_indexes', 'indices.id', '=', 'index_id')->where('conf_id', '=', $conf_id)->get();
 	
-		return View::make('indices.index', compact(array('passIndices', 'passSources')));
+		
+		
+		$passSources = DB::table('sources')->join('conf_sources', 'sources.id', '=', 'source_id')->where('conf_id', '=', $conf_id)->get();
+	
+		$queries = DB::getQueryLog();
+		$last_query = end($queries);
+	
+		return View::make('indices.index', compact(array('passIndices', 'passSources', 'conf_title', 'conf_id', 'queries')));
 	}
 
 	/**
@@ -25,23 +33,26 @@ class IndicesController extends \BaseController {
 	 */
 	public function create()
 	{
-	
-	
-		$sources = Source::all();
-		$passSources = $sources->toArray();
-		
 		$type = Input::get('type');
-		$conf_id = Input::get('conf_id');
 		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+	
+		
+		$passSources = DB::table('sources')->join('conf_sources', 'sources.id', '=', 'source_id')->where('conf_id', '=', $conf_id)->get();
+		
 		
 		if ($type == 'plain1'){
+		
 			$conf_id = Input::get('conf_id');
 			$conf_title = Input::get('conf_title');
 			return Redirect::action('SourcesController@chooseSource', array('conf_id'=>$conf_id, 'conf_title'=>$conf_title));
+			
 		}
+	
+			return View::make('indices.create', array('type'=>$type, 'passSources'=>$passSources, 'conf_id'=>$conf_id, 'conf_title'=>$conf_title));
 		
-		return View::make('indices.create', array('type'=>$type, 'passSources'=>$passSources));
 	}
+	
 
 	/**
 	 * Store a newly created index in storage.
@@ -50,6 +61,10 @@ class IndicesController extends \BaseController {
 	 */
 	public function store()
 	{
+	
+	$conf_title = Input::get('conf_title');
+	$conf_id = Input::get('conf_id');
+	
 	$index = new Index;
 		$index->i_name = Input::get('i_name');
 		$index->type = Input::get('type');
@@ -78,8 +93,13 @@ class IndicesController extends \BaseController {
 		$index->rt_attr = Input::get('rt_attr');
 	$index->save();
 	
+		$confIndex = new ConfIndex();
+		$confIndex->index_id = $index->id;
+		$confIndex->conf_id = $conf_id;
+		$confIndex->save();
 
-		return Redirect::route('indices.index');
+	
+		return Redirect::action('IndicesController@index', array('conf_id'=>$conf_id, 'conf_title'=>$conf_title));
 	}
 
 	/**

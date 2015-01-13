@@ -1,6 +1,11 @@
 @extends('layout')
 @section('content')
 <div class="row" style="margin-top:100px">
+	<div class="col-md-12">
+		<h2>{{ $conf_title }}.conf</h2>
+	</div>
+</div>
+<div class="row">
 <div class="col-md-4">
 <h2>Indexer Options:</h2>
 		{{ Form::open(array('action'=>'IndexersController@store', 'method'=>'post')) }}
@@ -58,6 +63,8 @@
 			<div class='form-group'>
 				<input type='submit' value='Submit'>
 			</div>
+				{{ Form::hidden('conf_id', $conf_id) }}
+	{{ Form::hidden('conf_title', $conf_title) }}
 		{{ Form::close() }}
 		</div>
 		</div>

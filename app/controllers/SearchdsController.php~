@@ -9,16 +9,18 @@ class SearchdsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$indices = Index::all();
-		$passIndices = $indices->toArray();
 	
-		$sources = Source::all();
-		$passSources = $sources->toArray();
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+	
+		$passIndices = DB::table('indices')->join('conf_indexes', 'indices.id', '=', 'index_id')->where('conf_id', '=', $conf_id)->get();
+	
+		$passSources = DB::table('sources')->join('conf_sources', 'sources.id', '=', 'source_id')->where('conf_id', '=', $conf_id)->get();
+	
+		$passSearchds = DB::select(DB::raw("select confs.id, searchds.* from confs, searchds where searchds.id = $conf_id"));
 		
-		$searchds = Searchd::find(1);
-		$passSearchds = $searchds->toArray();
-
-		return View::make('searchds.index', compact(array('passSearchds', 'passSources', 'passIndices')));
+		
+		return View::make('searchds.index', compact('passSearchds', 'passSources', 'passIndices', 'conf_id', 'conf_title'));
 	}
 
 	/**
@@ -28,7 +30,11 @@ class SearchdsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('searchds.create');
+	
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+		
+		return View::make('searchds.create', compact('conf_id', 'conf_title'));
 	}
 
 	/**
@@ -39,24 +45,21 @@ class SearchdsController extends \BaseController {
 	public function store()
 	{
 	
-	if($searchd = Searchd::find('1'))
-	{
-		$searchd = Searchd::find('1');
-		$searchd->listen = Input::get('listen');
-		$searchd->log = Input::get('log');
-		$searchd->query_log = Input::get('query_log');
-		$searchd->pid = Input::get('pid');
-		$searchd->save();
-		} else {
-		
+	$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+	
 		$searchd = new Searchd;
 		$searchd->listen = Input::get('listen');
 		$searchd->log = Input::get('log');
 		$searchd->query_log = Input::get('query_log');
 		$searchd->pid = Input::get('pid');
 		$searchd->save();
+		
+		$conf = Conf::where('id', '=', "$conf_id")->first();
+		$conf->searchd_id = $searchd->id;
+		$conf->save();
 		}
-		return Redirect::action('SearchdsController@index');
+		return Redirect::action('SearchdsController@index', array('conf_id'=> $conf_id, 'conf_title'=> $conf_title));
 	}
 
 	/**

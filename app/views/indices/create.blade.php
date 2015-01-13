@@ -1,11 +1,15 @@
 @extends('layout')
 @section('content')
 <div class="row" style="margin-top:100px">
-
+	<div class="col-md-12">
+		<h2>{{$conf_title}}.conf</h2>
+	</div>
+</div>
+<div class="row">
 	@if ($type == 'distributed' )
 
         <div class="col-md-4">
-        		<h2 class="text-center">Make a distributed index:</h2>
+        		<h3>Make a distributed index:</h3>
 					<div id="accordion" class="panel-group">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -99,18 +103,21 @@
 							</div>
 						</div>
 					</div>
+						{{ Form::hidden('conf_id', $conf_id) }}
+	{{ Form::hidden('conf_title', $conf_title) }}
 					<div class='form-group'>
 						<br/><input type='submit' value='Submit'>
 					</div>
 					</form>
 				</div>
 			</div>
+			{{ Form::close() }}
 @endif
-{{ Form::close() }}
-    @if ($type == 'plain' | $type == 'template')
 
+    @if ($type == 'plain' | $type == 'template')
+{{ Form::open(array('action'=>'IndicesController@store', 'method'=>'post')) }}
 	<div class="col-md-4">
-		<h2 class="text-center">Make an index:</h2>
+		<h3>Make an index:</h3>
 		<div id="accordion" class="panel-group">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -231,16 +238,21 @@
 				</div>
 			</div>
 		</div>
+			{{ Form::hidden('conf_id', $conf_id) }}
+	{{ Form::hidden('conf_title', $conf_title) }}
 		<div class='form-group'>
 						<br/><input type='submit' value='Submit'>
 		</div>
 		</form>
 	</div>
 </div>
+{{ Form::close() }}
 @endif
+
     @if ($type == 'rt')
+    {{ Form::open(array('action'=>'IndicesController@store', 'method'=>'post')) }}
 <div class="col-md-4">
-<h2>Make a RT index:</h2>
+<h3>Make a RT index:</h3>
 	<div id="accordion" class="panel-group">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -362,7 +374,11 @@
 					</div>
 					<div class='form-group'>
 							<label for='html_strip'><a href='http://sphinxsearch.com/docs/current.html#conf-html-strip'>HTML Stripper</a></label><br />
-							<p class='help-block'>Whether to strip HTML markup from incoming full-text data. HTML tags are removed, their contents are left intact by default. You can choose to keep and index attributes of the tags (e.g., HREF attribute in an A tag, or ALT in an IMG one) with the next option ('html_index_attrs').</p> 
+							<p class='help-block'>Whether to strip HTML markup from incoming full-<div class="row" style="margin-top:100px">
+	<div class="col-md-12">
+		<h2>{{ $conf_title }}.conf</h2>
+	</div>
+</div>text data. HTML tags are removed, their contents are left intact by default. You can choose to keep and index attributes of the tags (e.g., HREF attribute in an A tag, or ALT in an IMG one) with the next option ('html_index_attrs').</p> 
 							<input type='text' name='html_strip' placeholder='1 or 0. 0 is default.'>
 					</div>
 					<div class='form-group'>
@@ -379,18 +395,21 @@
 			</div>
 		</div>
 	</div>
+	{{ Form::hidden('conf_id', $conf_id) }}
+	{{ Form::hidden('conf_title', $conf_title) }}
 	<div class='form-group'>
 		<input type='submit' value='Submit'>
 	</div>
 </div>	
-@endif
 {{ Form::close() }}
+@endif
+@if($type == 'plain' | $type == 'template')
 	<div class="col-md-2"></div>
 	<div class="col-md-4">
-	<h2>Sources:</h2>
+	<h3>Sources:</h3>
 	@foreach ($passSources as $source)
-	<p>source {{ $source['s_name'] }}
-		@if(empty($source['s_name']))
+	<p>source {{ $source->s_name }}
+		@if(empty($source->s_name))
 			<strong>MUST NAME SOURCE!!!</strong>
 		@endif
 	 {
@@ -402,4 +421,8 @@
 		@endforeach
 		} <br /></p>
 	@endforeach
+
+@else
+	<h4 class="text-center">Distributed and RT indexes don't need a source.</h4>
+@endif
 @stop
