@@ -161,7 +161,7 @@ class IndexersController extends \BaseController {
 		}
 		$indexer->update();
 		
-		return View::make('confs.index', compact('conf_title', 'conf_id'));
+		return Redirect::route('indexers.index', compact('conf_id', 'conf_title'));
 	}
 
 	/**

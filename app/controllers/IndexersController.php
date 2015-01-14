@@ -66,6 +66,7 @@ class IndexersController extends \BaseController {
 			$indexer->write_buffer = Input::get('write_buffer');
 			$indexer->max_file_field_buffer = Input::get('max_file_field_buffer');
 			$indexer->on_file_field_error = Input::get('on_file_field_error');
+			$indexer->lemmatizer_cache = Input::get('lemmatizer_cache');
 		$indexer->save();
 		
 		$conf = Conf::where('id', '=', "$conf_id")->first();
@@ -159,6 +160,13 @@ class IndexersController extends \BaseController {
 			$indexer->on_file_field_error = Input::get('on_file_field_error');
 		
 		}
+		
+		if(!empty(Input::get('lemmatizer_cache'))){
+		
+			$indexer->lemmatizer_cache = Input::get('lemmatizer_cache');
+		
+		}
+		
 		$indexer->update();
 		
 		return Redirect::route('indexers.index', compact('conf_id', 'conf_title'));

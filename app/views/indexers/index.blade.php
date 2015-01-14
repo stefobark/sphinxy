@@ -24,7 +24,7 @@
 		 	{
 			<br />
 			@foreach ($index as $key => $value)
-				@if(!empty($value) AND $key != 'id' AND $key != 'created_at' AND $key != 'updated_at' AND $key != 'i_name')
+				@if(!empty($value) AND $key != 'id' AND $key != 'conf_id' AND $key != 'index_id' AND $key != 'created_at' AND $key != 'updated_at' AND $key != 'i_name')
 					{{ $key }} = {{ $value }} <br />
 				@endif
 			@endforeach
@@ -41,7 +41,7 @@
 			 {
 			<br />
 				@foreach ($source as $sKey => $sValue)
-					@if(!empty($sValue) AND $sKey != 'id' AND $sKey != 'created_at' AND $sKey != 'updated_at' AND $sKey != 's_name')
+					@if(!empty($sValue) AND $sKey != 'id' AND $sKey != 'source_id' AND $sKey != 'conf_id' AND $sKey != 'created_at' AND $sKey != 'updated_at' AND $sKey != 's_name')
 						{{ $sKey }} = {{ $sValue }} <br />
 					@endif
 				@endforeach
@@ -55,7 +55,7 @@
 				@foreach ($passSearchds[0] as $sdKey => $sdValue)
 			
 			
-					@if(!empty($sdValue) AND $sdKey != 'id' AND $sdKey != 'created_at' AND $sdKey != 'updated_at')
+					@if(!empty($sdValue) AND $sdKey != 'id' AND $sdKey != 'searchd_id' AND $sdKey != 'indexer_id' AND $sdKey != 'title' AND $sdKey != 'created_at' AND $sdKey != 'updated_at')
 						{{ $sdKey }} = {{ $sdValue }} <br />
 					@endif
 				 
@@ -70,7 +70,7 @@
 				@foreach ($passIndexers[0] as $iKey => $iValue)
 			
 			
-					@if(!empty($iValue) AND $iKey != 'id' AND $iKey != 'created_at' AND $iKey != 'updated_at')
+					@if(!empty($iValue) AND $iKey != 'id' AND $iKey != 'searchd_id' AND $iKey != 'indexer_id' AND $iKey != 'title' AND $iKey != 'created_at' AND $iKey != 'updated_at')
 						{{ $iKey }} = {{ $iValue }} <br />
 					@endif
 				 

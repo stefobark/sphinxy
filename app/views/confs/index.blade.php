@@ -1,12 +1,8 @@
 @extends('layout')
 @section('content')
 <div class="row" style="margin-top:100px">
-	<div class="col-md-12">
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<h2>
+	<div class="col-md-12 text-center">
+	<h2>{{ $conf_title }}.conf</h2>
 			<div class="btn btn-default"><a href="/indices/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Create another index</a></div>
 			<div class="btn btn-default"><a href="/sources/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Create another source</a></div>
 			<div class="btn btn-default"><a href="/searchds/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Redefine searchd settings</a></div>
@@ -17,7 +13,7 @@
 <div class="row">
 	<div class="col-md-4">
 
-		<h2>{{ $conf_title }}.conf</h2>
+		
 	
 		@foreach ($passSources as $source)
 			<p>source {{ $source->s_name }}
