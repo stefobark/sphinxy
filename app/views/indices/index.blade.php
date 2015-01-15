@@ -1,12 +1,12 @@
 @extends('layout')
 @section('content')
 <div class="row" style="margin-top:100px">
-	<div class="col-md-12">
+	<div class="col-md-12 text-center">
 		<h2>{{ $conf_title }}.conf</h2>
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12 text-center">
 		<h2>
 			<div class="btn btn-default"><a href="/Confs/newIndex?conf_id={{$conf_id}}&conf_title={{$conf_title}}">&nbsp;&nbsp;Create an index&nbsp;&nbsp;</a></div>
 			<div class="btn btn-default"><a href="/sources/create?conf_id={{$conf_id}}&conf_title={{$conf_title}}">Create another source</a></div>

@@ -17,7 +17,7 @@ class SearchdsController extends \BaseController {
 	
 		$passSources = DB::table('sources')->join('conf_sources', 'sources.id', '=', 'source_id')->where('conf_id', '=', $conf_id)->get();
 	
-		$passSearchds = DB::select(DB::raw("select confs.id, searchds.* from confs, searchds where searchds.id = $conf_id"));
+		$passSearchds = DB::table('searchds')->join('confs', 'searchds.id', '=', 'searchd_id')->where('confs.id', '=', $conf_id)->get();
 		
 		
 		return View::make('searchds.index', compact('passSearchds', 'passSources', 'passIndices', 'conf_id', 'conf_title'));
@@ -58,7 +58,6 @@ class SearchdsController extends \BaseController {
 		$conf = Conf::where('id', '=', "$conf_id")->first();
 		$conf->searchd_id = $searchd->id;
 		$conf->save();
-		}
 		return Redirect::action('SearchdsController@index', array('conf_id'=> $conf_id, 'conf_title'=> $conf_title));
 	}
 
@@ -70,9 +69,6 @@ class SearchdsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$searchd = Searchd::findOrFail($id);
-
-		return View::make('searchds.show', compact('searchd'));
 	}
 
 	/**
@@ -81,11 +77,17 @@ class SearchdsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
-		$searchd = Searchd::find($id);
+	
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+		$id = Input::get('id');
 
-		return View::make('searchds.edit', compact('searchd'));
+		$searchd = Searchd::find($id);
+		
+		return View::make('searchds.edit', compact('conf_title', 'conf_id', 'searchd'));
+		
 	}
 
 	/**
@@ -96,18 +98,20 @@ class SearchdsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$searchd = Searchd::findOrFail($id);
-
-		$validator = Validator::make($data = Input::all(), Searchd::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+		
+		$searchd = Searchd::find($id);
+		
+		if(!empty(Input::get('mem_limit'))){
+		
+			$searchd->mem_limit = Input::get('mem_limit');
 		}
+		$searchd->update();
+		
+		$passSearchds = DB::table('searchds')->join('confs', 'searchds.id', '=', 'searchd_id')->where('confs.id', '=', $conf_id)->get();
 
-		$searchd->update($data);
-
-		return Redirect::route('searchds.index');
+				return Redirect::route('searchds.index', compact('conf_id', 'conf_title', 'passSearchds'));
 	}
 
 	/**

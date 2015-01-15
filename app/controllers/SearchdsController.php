@@ -17,7 +17,7 @@ class SearchdsController extends \BaseController {
 	
 		$passSources = DB::table('sources')->join('conf_sources', 'sources.id', '=', 'source_id')->where('conf_id', '=', $conf_id)->get();
 	
-		$passSearchds = DB::select(DB::raw("select confs.id, searchds.* from confs, searchds where searchds.id = $conf_id"));
+		$passSearchds = DB::table('searchds')->join('confs', 'searchds.id', '=', 'searchd_id')->where('confs.id', '=', $conf_id)->get();
 		
 		
 		return View::make('searchds.index', compact('passSearchds', 'passSources', 'passIndices', 'conf_id', 'conf_title'));
@@ -69,9 +69,6 @@ class SearchdsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$searchd = Searchd::findOrFail($id);
-
-		return View::make('searchds.show', compact('searchd'));
 	}
 
 	/**
@@ -80,11 +77,17 @@ class SearchdsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
-		$searchd = Searchd::find($id);
+	
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+		$id = Input::get('id');
 
-		return View::make('searchds.edit', compact('searchd'));
+		$searchd = Searchd::find($id);
+		
+		return View::make('searchds.edit', compact('conf_title', 'conf_id', 'searchd'));
+		
 	}
 
 	/**
@@ -95,18 +98,36 @@ class SearchdsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$searchd = Searchd::findOrFail($id);
-
-		$validator = Validator::make($data = Input::all(), Searchd::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+		
+		$searchd = Searchd::find($id);
+		
+		if(!empty(Input::get('listen'))){
+		
+			$searchd->listen = Input::get('listen');
 		}
+		
+		if(!empty(Input::get('log'))){
+		
+			$searchd->log = Input::get('log');
+		}
+		
+		if(!empty(Input::get('query_log'))){
+		
+			$searchd->query_log = Input::get('query_log');
+		}
+		
+		if(!empty(Input::get('pid'))){
+		
+			$searchd->pid = Input::get('pid');
+		}
+	
+		$searchd->update();
+		
+		$passSearchds = DB::table('searchds')->join('confs', 'searchds.id', '=', 'searchd_id')->where('confs.id', '=', $conf_id)->get();
 
-		$searchd->update($data);
-
-		return Redirect::route('searchds.index');
+				return Redirect::route('searchds.index', compact('conf_id', 'conf_title', 'passSearchds'));
 	}
 
 	/**

@@ -8,7 +8,7 @@
 		<h2>
 			<div class="btn btn-default"><a href="/indices/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Create another index</a></div>
 			<div class="btn btn-default"><a href="/sources/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Create another source</a></div>
-			<div class="btn btn-default"><a href="/searchds/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Redefine searchd settings</a></div>
+			<div class="btn btn-default"><a href="/searchds/edit?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$passSearchds[0]->searchd_id}}">Redefine searchd settings</a></div>
 			<div class="btn btn-default"><span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span><a href="/indexers/edit?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$passIndexers[0]->indexer_id}}">&nbsp;&nbsp;Redefine indexer settings</a>&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span></a></div>
 		</h2>
 	</div>
@@ -55,7 +55,7 @@
 				@foreach ($passSearchds[0] as $sdKey => $sdValue)
 			
 			
-					@if(!empty($sdValue) AND $sdKey != 'id' AND $sdKey != 'created_at' AND $sdKey != 'updated_at')
+					@if(!empty($sdValue) AND $sdKey != 'id' AND $sdKey != 'searchd_id' AND $sdKey != 'indexer_id' AND $sdKey != 'title' AND $sdKey != 'created_at' AND $sdKey != 'updated_at')
 						{{ $sdKey }} = {{ $sdValue }} <br />
 					@endif
 				 
@@ -70,7 +70,7 @@
 				@foreach ($passIndexers[0] as $iKey => $iValue)
 			
 			
-					@if(!empty($iValue) AND $iKey != 'id' AND $iKey != 'created_at' AND $iKey != 'updated_at')
+					@if(!empty($iValue) AND $iKey != 'id' AND $iKey != 'searchd_id' AND $iKey != 'indexer_id' AND $iKey != 'title' AND $iKey != 'created_at' AND $iKey != 'updated_at')
 						{{ $iKey }} = {{ $iValue }} <br />
 					@endif
 				 

@@ -1,12 +1,12 @@
 @extends('layout')
 @section('content')
 <div class="row" style="margin-top:100px">
-	<div class="col-md-12">
+	<div class="col-md-12 text-center">
 		<h2>{{ $conf_title }}.conf</h2>
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12 text-center">
 		<h2>
 			<div class="btn btn-default"><span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span><a href="/indices/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">&nbsp;&nbsp;Create a plain index&nbsp;&nbsp;</a><span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span></div>
 			<div class="btn btn-default"><span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span><a href="/Confs/newIndex?conf_id={{$conf_id}}&conf_title={{$conf_title}}">&nbsp;&nbsp;Or, create a different kind of index&nbsp;&nbsp;</a><span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span></div>

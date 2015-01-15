@@ -7,8 +7,7 @@
 </div>
 <div class="row">
 	<div class="col-md-4">
-
-	<br/>
+<h3>Source Options:</h3>
 	
 		<div id="accordion" class="panel-group">
 			<div class="panel panel-default">
@@ -24,8 +23,8 @@
 							<input type='hidden' name='source_type' value="{{ $source_type }}">
 						</div>
 						<div class="form-group">
-							<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="name" data-content="To inherit options from other sources, just add
-								a ':' followed by the name of the source to inherit from."></span>&nbsp;<label for="s_name"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Source Name</a></label><br />
+							<label for="s_name"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Source Name</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="name" data-content="To inherit options from other sources, just add
+								a ':' followed by the name of the source to inherit from."></span></label><br />
 							<input type="text" name="s_name" placeholder="src1 or src2:src1">
 						</div>
 		 
@@ -52,9 +51,8 @@
 						<input type="text" name="sql_db" placeholder="db_name">
 					</div>
 					<div class="form-group">
-						<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_query" data-content="This is the main query, used to fetch the data you want to index."></span>&nbsp;<label for="sql_query"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-query">Main Query (mandatory)</a></label><br />
-			
-						<textarea name="sql_query" placeholder="SELECT id, group_id, UNIX_TIMESTAMP(date_added) AS date_added, title, content FROM documents"  style="width:300px!important"></textarea>
+						<label for="sql_query"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-query">Main Query (mandatory)</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_query" data-content="This is the main query, used to fetch the data you want to index."></span></label><br />
+						<textarea name="sql_query" placeholder="SELECT id, group_id, UNIX_TIMESTAMP(date_added) AS date_added, title, content FROM documents" style="width:100%!important"></textarea>
 					</div>
 				</div>
 			</div>
@@ -65,12 +63,12 @@
 		     @if ($source_type == 'odbc')
 		     
 					<div class="form-group">	
-						<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="odbc_dsn" data-content="ODBC DSN (Data Source Name) specifies the credentials (host, user, password, etc) to use when connecting to ODBC data source. The format depends on specific ODBC driver used."></span>&nbsp;<label for="odbc_dsn"><a href="http://sphinxsearch.com/docs/current.html#conf-odbc-dsn">ODBC DSN</a></label><br />
-						<textarea name="odbc_dsn" placeholder="Driver={Oracle ODBC Driver};Dbq=myDBName;Uid=myUsername;Pwd=myPassword" style="width:300px!important"></textarea>
+						<label for="odbc_dsn"><a href="http://sphinxsearch.com/docs/current.html#conf-odbc-dsn">ODBC DSN</a><span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="odbc_dsn" data-content="ODBC DSN (Data Source Name) specifies the credentials (host, user, password, etc) to use when connecting to ODBC data source. The format depends on specific ODBC driver used."></span></label><br />
+						<textarea name="odbc_dsn" placeholder="Driver={Oracle ODBC Driver};Dbq=myDBName;Uid=myUsername;Pwd=myPassword" style="width:100%!important"></textarea>
 					</div>
 					<div class="form-group">	
-						<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_column_buffers" data-content="ODBC and MS SQL drivers sometimes can not return the maximum actual column size to be expected. For instance, NVARCHAR(MAX) columns always report their length as 2147483647 bytes to indexer even though the actually used length is likely considerably less. However, the receiving buffers still need to be allocated upfront, and their sizes have to be determined. When the driver does not report the column length at all, Sphinx allocates default 1 KB buffers for each non-char column, and 1 MB buffers for each char column. Driver-reported column length also gets clamped by an upper limit of 8 MB, so in case the driver reports (almost) a 2 GB column length, it will be clamped and a 8 MB buffer will be allocated instead for that column. These hard-coded limits can be overridden using the sql_column_buffers directive, either in order to save memory on actually shorter columns, or overcome the 8 MB limit on actually longer columns. The directive values must be a comma-separated lists of selected column names and sizes."></span>&nbsp;<label for="sql_column_buffers"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-column-buffers">SQL Column Buffers</a></label><br />
-						<textarea name="sql_column_buffers" placeholder="mytitle=64K, mycontent=10M" style="width:300px!important"></textarea>
+						<label for="sql_column_buffers"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-column-buffers">SQL Column Buffers</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_column_buffers" data-content="ODBC and MS SQL drivers sometimes can not return the maximum actual column size to be expected. For instance, NVARCHAR(MAX) columns always report their length as 2147483647 bytes to indexer even though the actually used length is likely considerably less. However, the receiving buffers still need to be allocated upfront, and their sizes have to be determined. When the driver does not report the column length at all, Sphinx allocates default 1 KB buffers for each non-char column, and 1 MB buffers for each char column. Driver-reported column length also gets clamped by an upper limit of 8 MB, so in case the driver reports (almost) a 2 GB column length, it will be clamped and a 8 MB buffer will be allocated instead for that column. These hard-coded limits can be overridden using the sql_column_buffers directive, either in order to save memory on actually shorter columns, or overcome the 8 MB limit on actually longer columns. The directive values must be a comma-separated lists of selected column names and sizes."></span></label><br />
+						<textarea name="sql_column_buffers" placeholder="mytitle=64K, mycontent=10M" style="width:100%!important"></textarea>
 					</div>
 				</div>
 			</div>
@@ -83,7 +81,7 @@
 					<input type="text" name="mssql_winauth" placeholder="1 # use currently logged on user credentials"> 
 				</div>
 				<div class="form-group">	
-					<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_column_buffers" data-content="ODBC and MS SQL drivers sometimes can not return the maximum actual column size to be expected. For instance, NVARCHAR(MAX) columns always report their length as 2147483647 bytes to indexer even though the actually used length is likely considerably less. However, the receiving buffers still need to be allocated upfront, and their sizes have to be determined. When the driver does not report the column length at all, Sphinx allocates default 1 KB buffers for each non-char column, and 1 MB buffers for each char column. Driver-reported column length also gets clamped by an upper limit of 8 MB, so in case the driver reports (almost) a 2 GB column length, it will be clamped and a 8 MB buffer will be allocated instead for that column. These hard-coded limits can be overridden using the sql_column_buffers directive, either in order to save memory on actually shorter columns, or overcome the 8 MB limit on actually longer columns. The directive values must be a comma-separated lists of selected column names and sizes."></span>&nbsp;<label for="sql_column_buffers"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-column-buffers">SQL Column Buffers</a></label><br />
+					<label for="sql_column_buffers"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-column-buffers">SQL Column Buffers</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_column_buffers" data-content="ODBC and MS SQL drivers sometimes can not return the maximum actual column size to be expected. For instance, NVARCHAR(MAX) columns always report their length as 2147483647 bytes to indexer even though the actually used length is likely considerably less. However, the receiving buffers still need to be allocated upfront, and their sizes have to be determined. When the driver does not report the column length at all, Sphinx allocates default 1 KB buffers for each non-char column, and 1 MB buffers for each char column. Driver-reported column length also gets clamped by an upper limit of 8 MB, so in case the driver reports (almost) a 2 GB column length, it will be clamped and a 8 MB buffer will be allocated instead for that column. These hard-coded limits can be overridden using the sql_column_buffers directive, either in order to save memory on actually shorter columns, or overcome the 8 MB limit on actually longer columns. The directive values must be a comma-separated lists of selected column names and sizes."></span></label><br />
 					<textarea name="sql_column_buffers" placeholder="content=12M, comments=1M"></textarea>
 				</div>
 
@@ -97,17 +95,17 @@
 					<div id="collapseTwo" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="form-group">	
-								<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_joined_field" data-content="UNIX socket name to connect to for local SQL servers. Optional, default value is empty (use client library default settings)."></span>&nbsp;<label for="sql_sock"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-sock">UNIX Socket Name</a></label><br />
+								<label for="sql_sock"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-sock">UNIX Socket Name</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_sock" data-content="UNIX socket name to connect to for local SQL servers. Optional, default value is empty (use client library default settings)."></span></label><br />
 								<input type="text" name="sql_sock" placeholder="/tmp/mysql.sock">
 							</div>
 
 							<div class="form-group">
-								<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="attributes" data-content="**Note that for xml and tsv source types, you'll 
+								<label for="attributes"><a href="http://sphinxsearch.com/docs/current.html#attributes">Attributes</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="attributes" data-content="**Note that for xml and tsv source types, you'll 
 								have to use 'tsvpipe_attr' or 'xmlpipe_attr' instead of 'sql_attr',
 								and you have to explicitly declare the full text field (with: 'xmlpipe_attr_field' or 'tsvpipe_attr_field') in addition to its attributes. Also, be aware that 
 								you can configure xmlpipe within the stream itself. And, be sure that the first column of tsvpipe is a unique document id-- and remember to separate each 
-								field/attribute with a comma."></span>&nbsp;<label for="attributes"><a href="http://sphinxsearch.com/docs/current.html#attributes">Attributes</a> <br /></label><br />
-								<textarea name="attributes" rows="4" placeholder="for sql type: sql_attr_uint=something, for xml type: xmlpipe_field_string, for tsv type: tsvpipe_attr_json" style="width:300px!important"></textarea>
+								field/attribute with a comma."></span> <br /></label><br />
+								<textarea name="attributes" rows="4" placeholder="for sql type: sql_attr_uint=something, for xml type: xmlpipe_field_string, for tsv type: tsvpipe_attr_json" style="width:100%!important"></textarea>
 							</div>
 		     
 		     @if ($source_type == 'mysql')
@@ -132,37 +130,39 @@
 		     @endif
 		     
 				<div class="form-group">
-					<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_joined_field" data-content="Joined fields let you avoid JOIN and/or GROUP_CONCAT statements in the main document fetch query (sql_query). This can be useful when SQL-side JOIN is slow, or needs to be offloaded on Sphinx side, or simply to emulate MySQL-specific GROUP_CONCAT functionality in case your database server does not support it."></span>&nbsp;<label for="sql_joined_field"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-joined-field">Joined Field(s)</a></label><br />
-					<textarea name="sql_joined_field" type="text" placeholder="tagstext from query; SELECT docid, CONCAT('tag',tagid) FROM tags ORDER BY docid ASC" style="width:300px!important"></textarea>
+					<label for="sql_joined_field"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-joined-field">Joined Field(s)</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_joined_field" data-content="Joined fields let you avoid JOIN and/or GROUP_CONCAT statements in the main document fetch query (sql_query). This can be useful when SQL-side JOIN is slow, or needs to be offloaded on Sphinx side, or simply to emulate MySQL-specific GROUP_CONCAT functionality in case your database server does not support it."></span></label><br />
+					<textarea name="sql_joined_field" type="text" placeholder="tagstext from query; SELECT docid, CONCAT('tag',tagid) FROM tags ORDER BY docid ASC" style="width:100%!important"></textarea>
 				</div>
 				<div class="form-group">
-					<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_query_range" data-content="Main query, which needs to fetch all the documents, can impose a read lock on the whole table and stall the concurrent queries (eg. INSERTs to MyISAM table), waste a lot of memory for result set, etc. To avoid this, Sphinx supports so-called ranged queries. With ranged queries, Sphinx first fetches min and max document IDs from the table, and then substitutes different ID intervals into main query text and runs the modified query to fetch another chunk of documents."></span>&nbsp;<label for="sql_query_range"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-query-range">Ranged Query</a></label><br />
+					<label for="sql_query_range"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-query-range">Ranged Query</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_query_range" data-content="Main query, which needs to fetch all the documents, can impose a read lock on the whole table and stall the concurrent queries (eg. INSERTs to MyISAM table), waste a lot of memory for result set, etc. To avoid this, Sphinx supports so-called ranged queries. With ranged queries, Sphinx first fetches min and max document IDs from the table, and then substitutes different ID intervals into main query text and runs the modified query to fetch another chunk of documents."></span></label><br />
 					<p class="help-block"></p>
-					<textarea type="text" name="sql_query_range" placeholder="SELECT MIN(id),MAX(id) FROM documents" style="width:300px!important"></textarea>
+					<textarea type="text" name="sql_query_range" placeholder="SELECT MIN(id),MAX(id) FROM documents" style="width:100%!important"></textarea>
 				</div>
 
 		@endif
 		
 		 @if ($source_type == 'xmlpipe2') 
 					<div class="form-group">	
-						<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_query_range" data-content="Point to the directory of your xml file."></span>&nbsp;<label for="xmlpipe_command"><a href="http://sphinxsearch.com/docs/current.html#conf-xmlpipe-command">xml_command</a></label><br />
+						<label for="xmlpipe_command"><a href="http://sphinxsearch.com/docs/current.html#conf-xmlpipe-command">xml_command</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="sql_query_range" data-content="Point to the directory of your xml file."></span></label><br />
 						<input type="text" name="xmlpipe_command" placeholder="cat /home/sphinx/test.xml"> 
 					</div>
 					<div class="form-group">	
-						<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="xmlpipe_fixup_utf8" data-content="Perform Sphinx-side UTF-8 validation and filtering to prevent XML parser from choking on non-UTF-8 documents."></span>&nbsp;<label for="xmlpipe_fixup_utf8"><a href="http://sphinxsearch.com/docs/current.html#conf-xmlpipe-fixup-utf8">xml_fixup_utf8</a></label><br />
+						<label for="xmlpipe_fixup_utf8"><a href="http://sphinxsearch.com/docs/current.html#conf-xmlpipe-fixup-utf8">xml_fixup_utf8</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="xmlpipe_fixup_utf8" data-content="Perform Sphinx-side UTF-8 validation and filtering to prevent XML parser from choking on non-UTF-8 documents."></span></label><br />
 						<input type="text" name="xmlpipe_fixup_utf8" placeholder="1"> 
 					</div>
 		 @endif
 		 
 		 @if ($source_type == 'tsvpipe')
 					<div class="form-group">	
-						<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="tsvpipe_command" data-content="Point to the directory of your tsv file"></span>&nbsp;<label for="tsvpipe_command"><a href="http://sphinxsearch.com/docs/current.html#tsvpipe">tsvpipe_command</a></label><br />
+						<label for="tsvpipe_command"><a href="http://sphinxsearch.com/docs/current.html#tsvpipe">tsvpipe_command</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="tsvpipe_command" data-content="Point to the directory of your tsv file"></span></label><br />
 						<input type="text" name="tsvpipe_command" placeholder="cat /home/sphinx/test.tsv"> 
 					</div>
 				
 		 @endif
 		 </div>
 			</div>
+		</div>
+	</div>
 	{{ Form::hidden('conf_id', $conf_id) }}
 	{{ Form::hidden('conf_title', $conf_title) }}
 			<div class="form-group">

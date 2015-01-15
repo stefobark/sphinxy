@@ -8,7 +8,7 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				 $('[data-toggle="popover"]').popover({
-					  placement : 'top'
+					  placement : 'right'
 				 });
 			});
 			</script>
