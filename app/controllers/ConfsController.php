@@ -4,19 +4,10 @@ class ConfsController extends \BaseController {
 
 	public function index()
 	{
-	
-		$conf_id = Input::get('conf_id');
-		$conf = Conf::find("$conf_id");
-		$conf_title = $conf->title;
 		
+		$confs = Conf::all();
 		
-		$queries = DB::getQueryLog();
-		$last_query = end($queries);
-		
-		$id = $passIndexers[0]->indexer_id;
-		
-		
-		return View::make('confs.index', compact(array('passIndices', 'passSources', 'passSearchds', 'passIndexers', 'conf_id', 'queries', 'indexContent', 'id', 'conf_title')));
+		return View::make('confs.index', compact('confs'));
 	}
 
 

@@ -15,7 +15,6 @@ class CreateSourcesTable extends Migration {
 		Schema::create('sources', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('conf_source');
 			$table->text('s_name');
 			$table->text('sql_host');
 			$table->integer('sql_port');
@@ -34,7 +33,7 @@ class CreateSourcesTable extends Migration {
 			$table->text('mssql_winauth')->nullable();
 			$table->text('sql_column_buffers')->nullable();
 			$table->text('odbc_dsn')->nullable();
-			$table->text('s_type');
+			$table->text('type')->nullable();
 			$table->text('xmlpipe_command')->nullable();
 			$table->text('xml_fixup_utf8')->nullable();
 			$table->text('tsvpipe_command')->nullable();

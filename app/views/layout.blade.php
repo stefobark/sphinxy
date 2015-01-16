@@ -18,9 +18,13 @@
 				 border-color: #E7E7E7;
 			}
 			.redish {
-				 color: #FF6666
-			;
+				 color: #FF6666;
 			}
+			
+			.popover {
+			 min-width: 600px;
+			 }
+			
 		</style>
 		
 		

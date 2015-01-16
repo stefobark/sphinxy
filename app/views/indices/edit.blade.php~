@@ -116,7 +116,7 @@
 @endif
 
     @if ($type == 'plain' | $type == 'template')
-{{ Form::open(array('action'=>'IndicesController@store', 'method'=>'post')) }}
+							{{ Form::model($indices, array('route' => array('indices.update', $indices->id), 'method' => 'put')) }}
 	<div class="col-md-4">
 <h3>Edit this index:</h3>
 		<div id="accordion" class="panel-group">
@@ -251,7 +251,7 @@
 @endif
 
     @if ($type == 'rt')
-    {{ Form::open(array('action'=>'IndicesController@store', 'method'=>'post')) }}
+							{{ Form::model($indices, array('route' => array('indices.update', $indices->id), 'method' => 'put')) }}
 <div class="col-md-4">
 <h3>Edit this index:</h3>
 	<div id="accordion" class="panel-group">

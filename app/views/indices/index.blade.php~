@@ -11,9 +11,8 @@
 			<a href="/Confs/newIndex?conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another index</button></a>
 			<a href="/sources/create?conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another source</button></a>
 			<a href="/searchds/create?conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Define searchd settings</button></a>
-			<a href="/indexers/create?conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Define indexer settings</button></a>
 		</h2>
-		<p class="help-block">So, now you have at least one index and one source. You should probably go define indexer or searchd settings.</p>
+		<p class="help-block">So, now you have at least one index and one source. Let's go define searchd settings.</p>
 	</div>
 </div>
 <div class="row">
