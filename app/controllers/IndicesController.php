@@ -121,11 +121,17 @@ class IndicesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
-		$index = Index::find($id);
-
-		return View::make('indices.edit', compact('index'));
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+		$id = Input::get('id');
+		$type = Input::get('type');
+		$indices = Index::find($id);
+		
+		$passSources = DB::table('sources')->join('conf_sources', 'sources.id', '=', 'source_id')->where('conf_id', '=', $conf_id)->get();
+		
+		return View::make('indices.edit', compact('conf_title', 'conf_id', 'indices', 'type', 'passSources'));
 	}
 
 	/**
@@ -136,18 +142,130 @@ class IndicesController extends \BaseController {
 	 */
 	public function update($id)
 	{
+	
+		$conf_title = Input::get('conf_title');
+		$conf_id = Input::get('conf_id');
+	
 		$index = Index::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Index::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
+		if(!empty(Input::get('agent'))){
+		
+			$index->agent = Input::get('agent');
 		}
 
-		$index->update($data);
+		if(!empty(Input::get('agent_blackhole'))){
+		
+			$index->agent_blackhole = Input::get('agent_blackhole');
+		}
 
-		return Redirect::route('indices.index');
+		if(!empty(Input::get('agent_connect_timeout'))){
+		
+			$index->agent_connect_timeout = Input::get('agent_connect_timeout');
+		}
+		
+		if(!empty(Input::get('agent_persistent'))){
+		
+			$index->agent_persistent = Input::get('agent_persistent');
+		}
+		
+		if(!empty(Input::get('agent_query_timeout'))){
+		
+			$index->agent_query_timeout = Input::get('agent_query_timeout');
+		}
+		
+		if(!empty(Input::get('ha_strategy'))){
+		
+			$index->ha_strategy = Input::get('ha_strategy');
+		}
+		
+		if(!empty(Input::get('ha_ping_interval'))){
+		
+			$index->ha_ping_interval = Input::get('ha_ping_interval');
+		}
+		
+		if(!empty(Input::get('ha_period_karma'))){
+		
+			$index->ha_period_karma = Input::get('ha_period_karma');
+		}
+		
+		if(!empty(Input::get('source'))){
+		
+			$index->source = Input::get('source');
+		}
+		
+		if(!empty(Input::get('path'))){
+		
+			$index->path = Input::get('path');
+		}
+		
+		if(!empty(Input::get('docinfo'))){
+		
+			$index->docinfo = Input::get('docinfo');
+		}
+		
+		if(!empty(Input::get('morphology'))){
+		
+			$index->morphology = Input::get('morphology');
+		}
+		
+		if(!empty(Input::get('index_sp'))){
+		
+			$index->index_sp = Input::get('index_sp');
+		}
+		
+		if(!empty(Input::get('index_zones'))){
+		
+			$index->index_zones = Input::get('index_zones');
+		}
+		
+		if(!empty(Input::get('html_strip'))){
+		
+			$index->html_strip = Input::get('html_strip');
+		}
+		
+		if(!empty(Input::get('min_stemming_len'))){
+		
+			$index->min_stemming_len = Input::get('min_stemming_len');
+		}
+		
+		if(!empty(Input::get('stopwords'))){
+		
+			$index->stopwords = Input::get('stopwords');
+		}
+		
+		if(!empty(Input::get('wordforms'))){
+		
+			$index->wordforms = Input::get('wordforms');
+		}
+		
+		if(!empty(Input::get('embedded_limit'))){
+		
+			$index->embedded_limit = Input::get('embedded_limit');
+		}
+		
+		if(!empty(Input::get('exceptions'))){
+		
+			$index->exceptions = Input::get('exceptions');
+		}
+		
+		if(!empty(Input::get('html_index_attrs'))){
+		
+			$index->html_index_attrs = Input::get('html_index_attrs');
+		}
+		
+		if(!empty(Input::get('rt_field'))){
+		
+			$index->rt_field = Input::get('rt_field');
+		}
+		
+		if(!empty(Input::get('rt_attr'))){
+		
+			$index->rt_attr = Input::get('rt_attr');
+		}
+		
+		$index->update();
+
+		return Redirect::route('indices.index', compact('conf_title', 'conf_id', 'index'));
 	}
 
 	/**

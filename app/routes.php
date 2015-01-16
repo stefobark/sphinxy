@@ -29,6 +29,8 @@ Route::post('Confs/newIndex', 'ConfsController@store');
 Route::get('Confs/newIndex', 'ConfsController@store');
 
 Route::post('indices/store', 'IndicesController@store');
+Route::get('indices/edit', 'IndicesController@edit');
+Route::put('indices/update/{$id}', 'IndicesController@update');
 
 Route::post('searchds/store', 'SearchdsController@store');
 Route::get('searchds/edit', 'SearchdsController@edit');

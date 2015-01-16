@@ -8,10 +8,11 @@
 <div class="row">
 	<div class="col-md-12 text-center">
 		<h2>
-			<div class="btn btn-default"><a href="/Confs/newIndex?conf_id={{$conf_id}}&conf_title={{$conf_title}}">&nbsp;&nbsp;Create an index&nbsp;&nbsp;</a></div>
-			<div class="btn btn-default"><a href="/sources/create?conf_id={{$conf_id}}&conf_title={{$conf_title}}">Create another source</a></div>
-			<div class="btn btn-default"><span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span><a href="/searchds/create?conf_id={{$conf_id}}&conf_title={{$conf_title}}">&nbsp;&nbsp;Define searchd settings</a>&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign redish" aria-hidden="true"></span></div>
+			<a href="/Confs/newIndex?conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another index</button></a>
+			<a href="/sources/create?conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another source</button></a>
+			<a href="/searchds/create?conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Define searchd settings</button></a>
 		</h2>
+		<p class="help-block">So, now you have at least one index and one source. Let's go define searchd settings.</p>
 	</div>
 </div>
 <div class="row">
@@ -31,6 +32,7 @@
 				@endif
 			@endforeach
 			} <br /></p>
+			<a href="/indices/edit?type={{$index->type}}&conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$index->id}}"><button class="btn btn-primary">Edit</button></a><br /><br />
 		@endforeach
 	</div>
 	<div class="col-md-4">
