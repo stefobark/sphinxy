@@ -20,6 +20,8 @@ Route::get('/', function()
 Route::get('chooseSource', 'SourcesController@chooseSource');
 
 Route::get('Confs/new', 'ConfsController@create');
+Route::post('Confs/newIndex', 'ConfsController@store');
+Route::get('Confs/newIndex', 'ConfsController@store');
 Route::get('Confs/all', 'ConfsController@index');
 Route::get('Confs/save', 'ConfsController@saveConf');
 
@@ -27,8 +29,6 @@ Route::post('sources/store', 'SourcesController@store');
 Route::get('sources/edit', 'SourcesController@edit');
 Route::put('sources/update/{$id}', 'SourcesController@update');
 
-Route::post('Confs/newIndex', 'ConfsController@store');
-Route::get('Confs/newIndex', 'ConfsController@store');
 
 Route::post('indices/store', 'IndicesController@store');
 Route::get('indices/edit', 'IndicesController@edit');

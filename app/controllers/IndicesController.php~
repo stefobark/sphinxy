@@ -265,7 +265,7 @@ class IndicesController extends \BaseController {
 		
 		$index->update();
 
-		return Redirect::route('indices.index', compact('conf_title', 'conf_id'));
+		return Redirect::route('indices.index', compact('conf_title', 'conf_id', 'index'));
 	}
 
 	/**

@@ -10,8 +10,10 @@ class IndexersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$conf_title = Input::get('conf_title');
+		
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 	
 		$passIndices = DB::table('indices')->join('conf_indexes', 'indices.id', '=', 'index_id')->where('conf_id', '=', $conf_id)->get();
 	
@@ -37,9 +39,9 @@ class IndexersController extends \BaseController {
 	public function create()
 	{
 	
-		
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 
 		return View::make('indexers.create', compact('conf_title', 'conf_id'));
 		
@@ -55,7 +57,6 @@ class IndexersController extends \BaseController {
 	public function store()
 	{
 	
-	$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
 	
 		$indexer = new Indexer;
@@ -73,7 +74,7 @@ class IndexersController extends \BaseController {
 		$conf->indexer_id = $indexer->id;
 		$conf->save();
 		
-		return Redirect::route('indexers.index', compact('conf_id', 'conf_title'));
+		return Redirect::route('indexers.index', compact('conf_id'));
 	}
 
 	/**
@@ -97,8 +98,9 @@ class IndexersController extends \BaseController {
 	 */
 	public function edit()
 	{
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		$id = Input::get('id');
 
 		$indexers = Indexer::find($id);
@@ -115,9 +117,9 @@ class IndexersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 
 		
 		$indexer = Indexer::find($id);
@@ -169,7 +171,7 @@ class IndexersController extends \BaseController {
 		
 		$indexer->update();
 		
-		return Redirect::route('indexers.index', compact('conf_id', 'conf_title'));
+		return Redirect::route('indexers.index', compact('conf_id'));
 	}
 
 	/**

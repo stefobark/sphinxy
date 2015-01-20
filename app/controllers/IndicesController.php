@@ -9,10 +9,9 @@ class IndicesController extends \BaseController {
 	 */
 	public function index()
 	{
-		
-	
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		
 		$passIndices = DB::table('indices')->join('conf_indexes', 'indices.id', '=', 'index_id')->where('conf_id', '=', $conf_id)->get();
 	
@@ -23,7 +22,7 @@ class IndicesController extends \BaseController {
 		$queries = DB::getQueryLog();
 		$last_query = end($queries);
 	
-		return View::make('indices.index', compact(array('passIndices', 'passSources', 'conf_title', 'conf_id', 'queries')));
+		return View::make('indices.index', compact('passIndices', 'passSources', 'conf_title', 'conf_id', 'queries'));
 	}
 
 	/**
@@ -34,8 +33,9 @@ class IndicesController extends \BaseController {
 	public function create()
 	{
 		$type = Input::get('type');
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 	
 		
 		$passSources = DB::table('sources')->join('conf_sources', 'sources.id', '=', 'source_id')->where('conf_id', '=', $conf_id)->get();
@@ -45,11 +45,11 @@ class IndicesController extends \BaseController {
 		
 			$conf_id = Input::get('conf_id');
 			$conf_title = Input::get('conf_title');
-			return Redirect::action('SourcesController@chooseSource', array('conf_id'=>$conf_id, 'conf_title'=>$conf_title));
+			return Redirect::action('SourcesController@chooseSource', compact('conf_id', 'conf_title'));
 			
 		}
 	
-			return View::make('indices.create', array('type'=>$type, 'passSources'=>$passSources, 'conf_id'=>$conf_id, 'conf_title'=>$conf_title));
+			return View::make('indices.create', compact('type', 'passSources', 'conf_id', 'conf_title'));
 		
 	}
 	
@@ -62,8 +62,9 @@ class IndicesController extends \BaseController {
 	public function store()
 	{
 	
-	$conf_title = Input::get('conf_title');
 	$conf_id = Input::get('conf_id');
+	$conf = Conf::find("$conf_id");
+	$conf_title = $conf->title;
 	
 	$index = new Index;
 		$index->i_name = Input::get('i_name');
@@ -99,7 +100,7 @@ class IndicesController extends \BaseController {
 		$confIndex->save();
 
 	
-		return Redirect::action('IndicesController@index', array('conf_id'=>$conf_id, 'conf_title'=>$conf_title));
+		return Redirect::action('IndicesController@index', compact('conf_id'));
 	}
 
 	/**
@@ -123,8 +124,9 @@ class IndicesController extends \BaseController {
 	 */
 	public function edit()
 	{
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		$id = Input::get('id');
 		$type = Input::get('type');
 		$indices = Index::find($id);
@@ -143,8 +145,9 @@ class IndicesController extends \BaseController {
 	public function update($id)
 	{
 	
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 	
 		$index = Index::findOrFail($id);
 

@@ -41,6 +41,7 @@
 			  	<div class="navbar-collapse">
 					<ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
 						<li><a href="/Confs/new">New Configuration</a></li>
+						<li><a href="/Confs/all">All Configurations</a></li>
 					</ul>
 			  	</div><!--/.nav-collapse -->
 			</div>

@@ -7,9 +7,9 @@
 		<h2>
 			<a href="/indices/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another index</button></a>
 			<a href="/sources/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another source</button></a>
-
 			<a href="/indexers/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Define indexer settings</button></a>
 		</h2>
+		<p class="help-block">Great. We've got at least one index, one source, and we've told searchd what to do. Now would be a good time to set indexer settings.</p>
 	</div>
 </div>
 <div class="row">

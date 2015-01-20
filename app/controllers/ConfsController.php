@@ -14,7 +14,7 @@ class ConfsController extends \BaseController {
 	public function create()
 	{
 
-		return View::make('confs/new');
+		return View::make('confs.new');
 	
 	}
 
@@ -28,7 +28,7 @@ class ConfsController extends \BaseController {
 			$conf = Conf::find("$conf_id");
 			$conf_title = $conf->title;
 			
-			return View::make('indices/new', array('conf_id'=>$conf_id, 'conf_title'=>$conf_title));
+			return View::make('indices/new', compact('conf_id', 'conf_title'));
 
 		} else {
 
@@ -39,7 +39,7 @@ class ConfsController extends \BaseController {
 			$conf_id = $conf->id;
 			$conf_title = $conf->title;
 			
-			return View::make('indices/new', array('conf_id'=>$conf_id, 'conf_title'=>$conf_title));
+			return View::make('indices/new', compact('conf_id', 'conf_title'));
 		}
 		
 	}

@@ -11,13 +11,14 @@ class SourcesController extends \BaseController {
 	public function index()
 	{
 	
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		
 		$passSources = DB::table('sources')->join('conf_sources', 'sources.id', '=', 'source_id')->where('conf_id', '=', $conf_id)->get();
 		
 		
-		return View::make('sources.index', array('passSources'=>$passSources, 'conf_id'=>$conf_id, 'conf_title'=>$conf_title));
+		return View::make('sources.index', compact('passSources', 'conf_id', 'conf_title'));
 		
 	}
 
@@ -30,17 +31,20 @@ class SourcesController extends \BaseController {
 	public function chooseSource()
 	{
 		$conf_id = Input::Get('conf_id');
-		$conf_title = Input::get('conf_title');
-		return View::make('sources.chooseSource', array('conf_id'=>$conf_id, 'conf_title'=>$conf_title));
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
+		
+		return View::make('sources.chooseSource', compact('conf_id', 'conf_title'));
 	}
 	
 	public function create()
 	{
 	$source_type = Input::get('source_type');
 	$conf_id = Input::get('conf_id');
-	$conf_title = Input::get('conf_title');
+	$conf = Conf::find("$conf_id");
+	$conf_title = $conf->title;
 	
-		return View::make('sources.create', array('source_type'=>$source_type, 'conf_id'=>$conf_id, 'conf_title'=>$conf_title));
+		return View::make('sources.create', compact('source_type', 'conf_id', 'conf_title'));
 
 	}
 
@@ -52,8 +56,9 @@ class SourcesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		
 		$source = new Source;
 			$source->type = Input::get('type');
@@ -86,7 +91,7 @@ class SourcesController extends \BaseController {
 		$confSource->save();
 
 		
-		return Redirect::action('SourcesController@index', array('conf_id'=>$conf_id, 'conf_title'=>$conf_title));
+		return Redirect::action('SourcesController@index', compact('conf_id'));
 
 	}
 
@@ -111,8 +116,9 @@ class SourcesController extends \BaseController {
 	 */
 	public function edit()
 	{
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		$id = Input::get('id');
 		$type = Input::get('type');
 		$source = Source::find($id);
@@ -129,8 +135,9 @@ class SourcesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 	
 		$source = Source::findOrFail($id);
 		
@@ -242,7 +249,7 @@ class SourcesController extends \BaseController {
 		
 		$source->update();
 		
-		return Redirect::route('sources.index', compact('conf_title', 'conf_id'));
+		return Redirect::route('sources.index', compact('conf_id'));
 	}
 
 	/**

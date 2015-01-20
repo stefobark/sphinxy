@@ -10,8 +10,9 @@ class SearchdsController extends \BaseController {
 	public function index()
 	{
 	
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 	
 		$passIndices = DB::table('indices')->join('conf_indexes', 'indices.id', '=', 'index_id')->where('conf_id', '=', $conf_id)->get();
 	
@@ -30,9 +31,9 @@ class SearchdsController extends \BaseController {
 	 */
 	public function create()
 	{
-	
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		
 		return View::make('searchds.create', compact('conf_id', 'conf_title'));
 	}
@@ -45,7 +46,6 @@ class SearchdsController extends \BaseController {
 	public function store()
 	{
 	
-	$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
 	
 		$searchd = new Searchd;
@@ -58,7 +58,7 @@ class SearchdsController extends \BaseController {
 		$conf = Conf::where('id', '=', "$conf_id")->first();
 		$conf->searchd_id = $searchd->id;
 		$conf->save();
-		return Redirect::action('SearchdsController@index', array('conf_id'=> $conf_id, 'conf_title'=> $conf_title));
+		return Redirect::action('SearchdsController@index', array('conf_id'=> $conf_id));
 	}
 
 	/**
@@ -80,13 +80,14 @@ class SearchdsController extends \BaseController {
 	public function edit()
 	{
 	
-		$conf_title = Input::get('conf_title');
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		$id = Input::get('id');
 
 		$searchd = Searchd::find($id);
 		
-		return View::make('searchds.edit', compact('conf_title', 'conf_id', 'searchd'));
+		return View::make('searchds.edit', compact('conf_id', 'conf_title', 'searchd'));
 		
 	}
 
@@ -98,8 +99,10 @@ class SearchdsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$conf_title = Input::get('conf_title');
+	
 		$conf_id = Input::get('conf_id');
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		
 		$searchd = Searchd::find($id);
 		

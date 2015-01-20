@@ -7,14 +7,14 @@ class ConfsController extends \BaseController {
 		
 		$confs = Conf::all();
 		
-		return View::make('confs.index' compact('confs'));
+		return View::make('confs.index', compact('confs'));
 	}
 
 
 	public function create()
 	{
 
-		return View::make('confs/new');
+		return View::make('confs.new');
 	
 	}
 

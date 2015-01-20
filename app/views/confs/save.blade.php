@@ -2,23 +2,23 @@
 @section('content')
 <div class="row" style="margin-top:100px">
 	<div class="col-md-12 text-center">
-		<div class="btn btn-default"><a href="/Confs/new">New Configuration</a></div>
+		<a href="/Confs/new"><button class="btn btn-default">New Configuration</button></a>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-12 text-center">
 		<h2>
-			<div class="btn btn-default"><a href="/indices/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Create another index</a></div>
-			<div class="btn btn-default"><a href="/sources/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Create another source</a></div>
-			<div class="btn btn-default"><a href="/searchds/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Redefine searchd settings</a></div>
-			<div class="btn btn-default"><a href="/indexers/edit?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$passIndexers[0]->indexer_id}}">&nbsp;&nbsp;Redefine indexer settings</a>&nbsp;&nbsp;</a></div>
+			<a href="/indices/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another index</button></a>
+			<a href="/sources/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another source</button></a>
+			<a href="/searchds/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Redefine searchd settings</button></a>
+			<a href="/indexers/edit?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$passIndexers[0]->indexer_id}}"><button class="btn btn-default">Redefine indexer settings</button></a>
 		</h2>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-12 text-center">
 
-		<h2>{{ $conf_title }}.conf was saved in /public.</h2>
+		<h3>{{ $conf_title }}.conf was saved in /public.</h3>
 		
 	</div>
 </div>
