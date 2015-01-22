@@ -17,6 +17,13 @@ Route::get('/', function()
 	return View::make('home');
 });
 
+Route::get('/startIndexer', function()
+{
+	$conf_title = $_GET['conf_title'];
+	$data = exec("indexer -c /var/www/html/configuration/public/$conf_title.conf mysql");
+	return Response::json($data);
+});
+
 Route::get('chooseSource', 'SourcesController@chooseSource');
 
 Route::get('Confs/new', 'ConfsController@create');

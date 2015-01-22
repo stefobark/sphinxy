@@ -18,7 +18,7 @@ class CreateSearchdsTable extends Migration {
 			$table->text('listen');
 			$table->text('log');
 			$table->text('query_log');
-			$table->text('pid');
+			$table->text('pid_file');
 			$table->timestamps();
 		});
 	}

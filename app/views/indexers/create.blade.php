@@ -3,6 +3,7 @@
 <div class="row" style="margin-top:100px">
 	<div class="col-md-12 text-center">
 		<h2>{{ $conf_title }}.conf</h2>
+		<p class="help-block">Feel free to skip this and save this configuration file now. If you leave these blank, Sphinx will just use defaults.</p> <a href="/Confs/save?conf_id={{$conf_id}}"><button class="btn btn-default">Save Configuration</button></a>
 	</div>
 </div>
 <div class="row">
@@ -99,7 +100,6 @@
 				<input type='submit' value='Submit'>
 			</div>
 				{{ Form::hidden('conf_id', $conf_id) }}
-	{{ Form::hidden('conf_title', $conf_title) }}
 		{{ Form::close() }}
 		</div>
 	</div>

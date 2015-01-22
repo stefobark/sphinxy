@@ -17,13 +17,12 @@
 			<input type="radio" name="source_type" value="tsvpipe">TSV<br>
 			<input type="radio" name="source_type" value="odbc">ODBC<br>
 			{{ Form::hidden('conf_id', $conf_id) }}
-			{{ Form::hidden('conf_title', $conf_title) }}
 			<input type="submit" value="Submit">
 		</form>
 		<h5><a href="http://sphinxsearch.com/docs/current.html#confgroup-source">learn more</a></h5>
 	</div>
 	<div class="col-md-3">
 		<h4>Or, if you already have sources, skip this:</h4>
-		<div class="btn btn-default"><a href="/indices/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}">Create a plain index</a></div>
+		<div class="btn btn-default"><a href="/indices/create?type=plain&conf_id={{$conf_id}}">Create a plain index</a></div>
 </div>
 	@stop

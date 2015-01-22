@@ -248,7 +248,7 @@
 @endif
 
     @if ($type == 'rt')
-    {{ Form::open(array('action'=>'IndicesController@store', 'method'=>'post')) }}
+   
 <div class="col-md-4">
 <h3>Make a RT index:</h3>
 	<div id="accordion" class="panel-group">

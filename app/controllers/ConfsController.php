@@ -111,18 +111,28 @@ class ConfsController extends \BaseController {
 		
 		$passIndexers = DB::table('indexers')->join('confs', 'indexers.id', '=', 'indexer_id')->where('confs.id', '=', $conf_id)->get();
 		
-		$indexerContent = "indexer \n{\n";
-			foreach ($passIndexers[0] as $iKey => $iValue){
-				if(!empty($iValue) AND $iKey != 'title' AND $iKey != 'searchd_id' AND $iKey != 'indexer_id' AND $iKey != 'id' AND $iKey != 'created_at' AND $iKey != 'updated_at'){
-					$indexerContent .= "$iKey = $iValue \n";
+		//there may be no indexer settings defined. so, check if it's empty. if so, skip it.
+		
+		if(!empty($indexerContent)){
+			$indexerContent = "indexer \n{\n";
+				foreach ($passIndexers[0] as $iKey => $iValue){
+					if(!empty($iValue) AND $iKey != 'title' AND $iKey != 'searchd_id' AND $iKey != 'indexer_id' AND $iKey != 'id' AND $iKey != 'created_at' AND $iKey != 'updated_at'){
+						$indexerContent .= "$iKey = $iValue \n";
+					}
 				}
-			}
-		$indexerContent .= "}\n\n";
+			$indexerContent .= "}\n\n";
 		
 		$path = public_path("$conf_title.conf");
     	File::append($path, $indexerContent);
+    	}
     	
-    	$allContent = $sourceContent . $indexContent . $searchdContent . $indexerContent;
+    	//put everything together so we can just spit it out in the view. again, check if there is any indexer content.
+    	
+    	$allContent = $sourceContent . $indexContent . $searchdContent;
+    	if(!empty($indexerContent))
+    	{
+    	$allContent .= $indexerContent; 
+    	}
     	
     	return View::make('confs.save', compact('conf_id', 'conf_title', 'allContent', 'passIndexers', 'passIndices', 'passSearchds', 'passSources'));
 		

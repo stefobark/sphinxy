@@ -20,7 +20,7 @@
 					<div class="panel-body">
 					{{ Form::open(array('action'=>'SourcesController@store', 'method'=>'post')) }}
 						<div class='form-group'>
-							<input type='hidden' name='source_type' value="{{ $source_type }}">
+							<input type='hidden' name='type' value="{{ $source_type }}">
 						</div>
 						<div class="form-group">
 							<label for="s_name"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Source Name</a>&nbsp;<span class='glyphicon glyphicon-question-sign redish' data-toggle="popover" title="name" data-content="To inherit options from other sources, just add
@@ -164,7 +164,6 @@
 		</div>
 	</div>
 	{{ Form::hidden('conf_id', $conf_id) }}
-	{{ Form::hidden('conf_title', $conf_title) }}
 			<div class="form-group">
 				<input type="submit" value="Submit">
 			</div>

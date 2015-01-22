@@ -4,7 +4,6 @@
 
 	<div class="col-md-12">
 		<h2>{{ $conf_title }}.conf</h2>
-		{{ var_dump($queries) }}
 	</div>
 </div>
 <div class="row">
@@ -24,14 +23,13 @@
 				<input type='text' name='query_log' placeholder='/var/log/query.log'>
 			</div>
 			<div class='form-group'>
-				<label for='pid'><a href='http://sphinxsearch.com/docs/current.html#conf-pid-file'>Where to put the PID (mandatory)</a></label><br />
-				<input type='text' name='pid' placeholder='/var/run/searchd.pid'>
+				<label for='pid_file'><a href='http://sphinxsearch.com/docs/current.html#conf-pid-file'>Where to put the PID (mandatory)</a></label><br />
+				<input type='text' name='pid_file' placeholder='/var/run/searchd.pid'>
 			</div>
 			<div class='form-group'>
 				<input type='submit' value='Submit'>
 			</div>
 				{{ Form::hidden('conf_id', $conf_id) }}
-	{{ Form::hidden('conf_title', $conf_title) }}
 		{{ Form::close() }}
 		</div>
 		</div>

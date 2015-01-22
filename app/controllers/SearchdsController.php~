@@ -11,7 +11,8 @@ class SearchdsController extends \BaseController {
 	{
 	
 		$conf_id = Input::get('conf_id');
-		$conf_title = Conf::find("$conf_id");
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 	
 		$passIndices = DB::table('indices')->join('conf_indexes', 'indices.id', '=', 'index_id')->where('conf_id', '=', $conf_id)->get();
 	
@@ -31,7 +32,8 @@ class SearchdsController extends \BaseController {
 	public function create()
 	{
 		$conf_id = Input::get('conf_id');
-		$conf_title = Conf::find("$conf_id");
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		
 		return View::make('searchds.create', compact('conf_id', 'conf_title'));
 	}
@@ -50,7 +52,7 @@ class SearchdsController extends \BaseController {
 		$searchd->listen = Input::get('listen');
 		$searchd->log = Input::get('log');
 		$searchd->query_log = Input::get('query_log');
-		$searchd->pid = Input::get('pid');
+		$searchd->pid_file = Input::get('pid');
 		$searchd->save();
 		
 		$conf = Conf::where('id', '=', "$conf_id")->first();
@@ -79,7 +81,8 @@ class SearchdsController extends \BaseController {
 	{
 	
 		$conf_id = Input::get('conf_id');
-		$conf_title = Conf::find("$conf_id");
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		$id = Input::get('id');
 
 		$searchd = Searchd::find($id);
@@ -98,7 +101,8 @@ class SearchdsController extends \BaseController {
 	{
 	
 		$conf_id = Input::get('conf_id');
-		$conf_title = Conf::find("$conf_id");
+		$conf = Conf::find("$conf_id");
+		$conf_title = $conf->title;
 		
 		$searchd = Searchd::find($id);
 		

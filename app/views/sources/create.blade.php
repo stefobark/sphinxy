@@ -164,7 +164,6 @@
 		</div>
 	</div>
 	{{ Form::hidden('conf_id', $conf_id) }}
-	{{ Form::hidden('conf_title', $conf_title) }}
 			<div class="form-group">
 				<input type="submit" value="Submit">
 			</div>

@@ -15,8 +15,6 @@ class CreateSearchdsTable extends Migration {
 		Schema::create('searchds', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('conf_id')->unsigned()->index();
-			$table->foreign('conf_id')->references('id')->on('confs')->onDelete('cascade')->onUpdate('cascade');
 			$table->text('listen');
 			$table->text('log');
 			$table->text('query_log');

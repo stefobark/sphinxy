@@ -17,7 +17,6 @@
 						{{ Form::radio('type', "template") }} Template<br />
 						{{ Form::radio('type', "distributed") }} Distributed<br />
 						{{ Form::hidden('conf_id', $conf_id) }}
-						{{ Form::hidden('conf_title', $conf_title) }}
 						<br />
 						{{ Form::submit("Submit") }}
 					{{ Form::close() }}

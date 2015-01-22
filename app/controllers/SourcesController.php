@@ -59,6 +59,7 @@ class SourcesController extends \BaseController {
 		$conf_id = Input::get('conf_id');
 		$conf = Conf::find("$conf_id");
 		$conf_title = $conf->title;
+		$sql_pass = Input::get('sql_pass');		
 		
 		$source = new Source;
 			$source->type = Input::get('type');
@@ -67,7 +68,11 @@ class SourcesController extends \BaseController {
 			$source->sql_port = Input::get('sql_port');
 			$source->sql_user = Input::get('sql_user');
 			$source->sql_db = Input::get('sql_db');
-			$source->sql_pass = Input::get('sql_pass');
+			if(!empty($sql_pass)){
+			$source->sql_pass = $sql_pass;
+			} else {
+			$source->sql_pass = ' ';
+			}
 			$source->sql_query = Input::get('sql_query');
 			$source->odbc_dsn = Input::get('odbc_dsn');
 			$source->sql_column_buffers = Input::get('sql_column_buffers');

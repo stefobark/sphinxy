@@ -5,9 +5,9 @@
 	<div class="col-md-12 text-center">
 	<h2>{{ $conf_title }}.conf</h2>
 		<h2>
-			<a href="/indices/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another index</button></a>
-			<a href="/sources/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another source</button></a>
-			<a href="/indexers/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Define indexer settings</button></a>
+			<a href="/indices/create?type=plain&conf_id={{$conf_id}}"><button class="btn btn-default">Create another index</button></a>
+			<a href="/sources/create?type=plain&conf_id={{$conf_id}}"><button class="btn btn-default">Create another source</button></a>
+			<a href="/indexers/create?type=plain&conf_id={{$conf_id}}"><button class="btn btn-default">Define indexer settings</button></a>
 		</h2>
 		<p class="help-block">Great. We've got at least one index, one source, and we've told searchd what to do. Now would be a good time to set indexer settings.</p>
 	</div>
@@ -28,7 +28,7 @@
 				@endif
 			@endforeach
 			} <br /></p>
-						<a href="/indices/edit?type={{$index->type}}&conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$index->id}}"><button class="btn btn-primary">Edit</button></a><br /><br />
+						<a href="/indices/edit?type={{$index->type}}&conf_id={{$conf_id}}&id={{$index->id}}"><button class="btn btn-primary">Edit</button></a><br /><br />
 		@endforeach
 	</div>
 	<div class="col-md-4">
@@ -46,7 +46,7 @@
 					@endif
 				@endforeach
 				} <br /></p>
-																	<a href="/sources/edit?conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$source->id}}&type={{$source->type}}"><button class="btn btn-primary">Edit</button></a><br /><br />
+																	<a href="/sources/edit?conf_id={{$conf_id}}&id={{$source->id}}&type={{$source->type}}"><button class="btn btn-primary">Edit</button></a><br /><br />
 			@endforeach
 	</div>
 	<div class="col-md-4">
@@ -62,7 +62,7 @@
 				 
 			@endforeach
 			}<br /><br />
-						<a href="/searchds/edit?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$passSearchds[0]->searchd_id}}"><button class="btn btn-primary">Edit</button></a>
+						<a href="/searchds/edit?type=plain&conf_id={{$conf_id}}&id={{$passSearchds[0]->searchd_id}}"><button class="btn btn-primary">Edit</button></a>
 </p>
 	</div>
 @stop

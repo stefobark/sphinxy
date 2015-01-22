@@ -95,7 +95,6 @@
 						</div>
 					</div>
 						{{ Form::hidden('conf_id', $conf_id) }}
-	{{ Form::hidden('conf_title', $conf_title) }}
 					<div class='form-group'>
 						<br/><input type='submit' value='Submit'>
 					</div>
@@ -237,7 +236,6 @@
 			</div>
 		</div>
 			{{ Form::hidden('conf_id', $conf_id) }}
-	{{ Form::hidden('conf_title', $conf_title) }}
 		<div class='form-group'>
 						<br/><input type='submit' value='Submit'>
 		</div>
@@ -427,7 +425,6 @@
 		</div>
 	</div>
 	{{ Form::hidden('conf_id', $conf_id) }}
-	{{ Form::hidden('conf_title', $conf_title) }}
 	<div class='form-group'>
 		<input type='submit' value='Submit'>
 	</div>
@@ -451,7 +448,7 @@
 			@endif
 		@endforeach
 		} <br /></p>
-					<a href="/sources/edit?conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$source->id}}&type={{$source->type}}"><button class="btn btn-primary">Edit</button></a><br /><br />
+					<a href="/sources/edit?conf_id={{$conf_id}}&id={{$source->id}}&type={{$source->type}}"><button class="btn btn-primary">Edit</button></a><br /><br />
 	@endforeach
 
 @else

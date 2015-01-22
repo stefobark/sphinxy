@@ -8,9 +8,9 @@
 <div class="row">
 	<div class="col-md-12 text-center">
 		<h2>
-			<a href="/indices/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default"></span>Create a plain index</button></a>
-			<a href="/Confs/newIndex?conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Or, create a different kind of index</button></a>
-			<a href="/sources/create?conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another source</button></a>
+			<a href="/indices/create?type=plain&conf_id={{$conf_id}}"><button class="btn btn-default"></span>Create a plain index</button></a>
+			<a href="/Confs/newIndex?conf_id={{$conf_id}}"><button class="btn btn-default">Or, create a different kind of index</button></a>
+			<a href="/sources/create?conf_id={{$conf_id}}"><button class="btn btn-default">Create another source</button></a>
 		</h2>
 		
 		<p class="help-block">Plain indexes need sources. Now that you have a source, you can go create a plain index. Or, you can change course and go make a different kind of index.</p>
@@ -32,7 +32,7 @@
 			@endif
 			@endforeach
 			} <br /></p>
-			<a href="/sources/edit?conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$source->id}}&type={{$source->type}}"><button class="btn btn-primary">Edit</button></a><br /><br />
+			<a href="/sources/edit?conf_id={{$conf_id}}&id={{$source->id}}&type={{$source->type}}"><button class="btn btn-primary">Edit</button></a><br /><br />
 		@endforeach
 	</div>
 </div>

@@ -10,7 +10,7 @@
 			
 				
 				<div class="col-md-4">
-					<h4>What kind of index will this be?</h4>
+					<h4>What kind of index are we building?</h4>
 					{{ Form::open(array('action' => 'IndicesController@create', 'method'=>'get')) }}
 						{{ Form::radio("type", "plain1") }} Plain<br />
 						{{ Form::radio("type", "rt") }} Realtime<br />

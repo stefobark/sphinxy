@@ -52,7 +52,7 @@ class SearchdsController extends \BaseController {
 		$searchd->listen = Input::get('listen');
 		$searchd->log = Input::get('log');
 		$searchd->query_log = Input::get('query_log');
-		$searchd->pid = Input::get('pid');
+		$searchd->pid_file = Input::get('pid_file');
 		$searchd->save();
 		
 		$conf = Conf::where('id', '=', "$conf_id")->first();
@@ -121,9 +121,9 @@ class SearchdsController extends \BaseController {
 			$searchd->query_log = Input::get('query_log');
 		}
 		
-		if(!empty(Input::get('pid'))){
+		if(!empty(Input::get('pid_file'))){
 		
-			$searchd->pid = Input::get('pid');
+			$searchd->pid = Input::get('pid_file');
 		}
 	
 		$searchd->update();

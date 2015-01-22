@@ -46,6 +46,7 @@
 					@endif
 				@endforeach
 				} <br /></p>
+																	<a href="/sources/edit?conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$source->id}}&type={{$source->type}}"><button class="btn btn-primary">Edit</button></a><br /><br />
 			@endforeach
 	</div>
 	<div class="col-md-4">

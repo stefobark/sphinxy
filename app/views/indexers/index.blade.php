@@ -3,11 +3,11 @@
 
 <div class="row" style="margin-top:100px">
 	<div class="col-md-12 text-center">
-	<h2>{{ $conf_title }}.conf &nbsp; <a href="/Confs/save?conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Save Configuration</button></a>
+	<h2>{{ $conf_title }}.conf &nbsp; <a href="/Confs/save?conf_id={{$conf_id}}"><button class="btn btn-default">Save Configuration</button></a>
 </h2>
 		<h2>
-			<a href="/indices/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another index</button></a>
-			<a href="/sources/create?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}"><button class="btn btn-default">Create another source</button></a>
+			<a href="/indices/create?type=plain&conf_id={{$conf_id}}"><button class="btn btn-default">Create another index</button></a>
+			<a href="/sources/create?type=plain&conf_id={{$conf_id}}"><button class="btn btn-default">Create another source</button></a>
 
 
 		</h2>
@@ -30,7 +30,7 @@
 				
 			@endforeach
 			} <br /></p>
-			<a href="/indices/edit?type={{$index->type}}&conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$index->id}}"><button class="btn btn-primary">Edit</button></a><br /><br />
+			<a href="/indices/edit?type={{$index->type}}&conf_id={{$conf_id}}&id={{$index->id}}"><button class="btn btn-primary">Edit</button></a><br /><br />
 		@endforeach
 	</div>
 	<div class="col-md-3">
@@ -48,7 +48,7 @@
 					@endif
 				@endforeach
 				} <br /></p>
-													<a href="/sources/edit?conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$source->id}}&type={{$source->type}}"><button class="btn btn-primary">Edit</button></a><br /><br />
+													<a href="/sources/edit?conf_id={{$conf_id}}&id={{$source->id}}&type={{$source->type}}"><button class="btn btn-primary">Edit</button></a><br /><br />
 			@endforeach
 	</div>
 	<div class="col-md-3">
@@ -64,9 +64,10 @@
 				 
 			@endforeach
 			}<br /><br />
-						<a href="/searchds/edit?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$passSearchds[0]->searchd_id}}"><button class="btn btn-primary">Edit</button></a>
+						<a href="/searchds/edit?type=plain&conf_id={{$conf_id}}&id={{$passSearchds[0]->searchd_id}}"><button class="btn btn-primary">Edit</button></a>
 </p>
 </div>
+@if(!empty($passIndexers[0])
 <div class="col-md-3">
 		<h2> Indexer: </h2>
 		<p>indexer {
@@ -80,7 +81,7 @@
 				 
 			@endforeach
 			}<br /><br />
-						<a href="/indexers/edit?type=plain&conf_id={{$conf_id}}&conf_title={{$conf_title}}&id={{$passIndexers[0]->indexer_id}}"><button class="btn btn-primary">Edit</button></a>
+						<a href="/indexers/edit?type=plain&conf_id={{$conf_id}}&id={{$passIndexers[0]->indexer_id}}"><button class="btn btn-primary">Edit</button></a>
 </p>
-
+@endif
 @stop
