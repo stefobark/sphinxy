@@ -22,8 +22,8 @@
 				<input type='text' name='query_log' placeholder="{{$searchd->query_log}}">
 			</div>
 			<div class='form-group'>
-				<label for='pid'><a href='http://sphinxsearch.com/docs/current.html#conf-pid-file'>Where to put the PID (mandatory)</a></label><br />
-				<input type='text' name='pid' placeholder="{{$searchd->pid}}">
+				<label for='pid_file'><a href='http://sphinxsearch.com/docs/current.html#conf-pid-file'>Where to put the PID (mandatory)</a></label><br />
+				<input type='text' name='pid_file' placeholder="{{$searchd->pid_file}}">
 			</div>
 			<div class='form-group'>
 				<input type='submit' value='Submit'>

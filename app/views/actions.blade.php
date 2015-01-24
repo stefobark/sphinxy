@@ -1,0 +1,66 @@
+@extends('layout')
+@section('content')
+<script type="text/javascript" language="javascript">
+			$(document).ready(function() {
+				$("#indexButton").click(function(event){
+				    $('.indexer').load("/startIndexer?conf_title={{$conf_title}}");
+				});
+			});
+</script>
+<script type="text/javascript" language="javascript">
+	$(document).ready(function() {
+		$("#searchdButton").click(function(event){
+		    $('.searchd').load("/startSearchd?conf_title={{$conf_title}}");
+		});
+	});
+</script>
+<script type="text/javascript" language="javascript">
+	$(document).ready(function() {
+		$("#rotateButton").click(function(event){
+		    $('.rotate').load("/rotate?conf_title={{$conf_title}}");
+		});
+	});
+</script>
+<div class="row"  style="margin-top:100px">
+	<div class="col-md-12 text-center">
+		<h2>Action Center</h2>
+		<p class="help-block">This is where Sphinxy begins to become a basic GUI.<br /><strong>Make sure that the user PHP is running under has the appropriate permissions.</strong> 
+		<br />To help diagnose potential problems, you will see the output from commands.</p>
+	</div>
+</div>
+
+<div class="row" >
+	<div class="col-md-12 text-center">
+		<a href="/indexers?conf_id={{$conf_id}}"><button class="btn btn-primary">Edit {{$conf_title}}.conf</button></a>
+	</div>
+</div>
+<div class="row"  style="margin-top:50px">
+	<div class="col-md-2"  >
+		<button class="btn btn-default " id="indexButton">Run Indexer</button>
+	</div>
+	<div class="col-md-10">
+		<div class="indexer"> </div>
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="col-md-2">
+		<button class="btn btn-default " id="rotateButton">Rotate indexes</button>
+	</div>
+	<div class="col-md-10">
+		<div class="rotate"> </div>
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="col-md-2">
+		<button class="btn btn-default " id="searchdButton">Start Searchd</button>
+	</div>
+	<div class="col-md-10">
+		<div class="searchd"> </div>
+	</div>
+</div>
+
+@stop

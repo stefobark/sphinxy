@@ -17,11 +17,39 @@ Route::get('/', function()
 	return View::make('home');
 });
 
+Route::get('/actions', 'ActionsController@index');
+
 Route::get('/startIndexer', function()
 {
 	$conf_title = $_GET['conf_title'];
-	$data = exec("indexer -c /var/www/html/configuration/public/$conf_title.conf mysql");
-	return Response::json($data);
+	$data = exec("indexer -c $conf_title.conf --all", $o);
+	$dataClean = '';
+	foreach($o as $d){
+		$dataClean .= str_replace("\\", " ", $d) . "<br />";
+		}
+	return $dataClean;
+});
+
+Route::get('/rotate', function()
+{
+	$conf_title = $_GET['conf_title'];
+	$data = exec("indexer -c $conf_title.conf --all --rotate", $o);
+	$dataClean = '';
+	foreach($o as $d){
+		$dataClean .= $d . "<br />";
+		}
+	return $dataClean;
+});
+
+Route::get('/startSearchd', function()
+{
+	$conf_title = $_GET['conf_title'];
+	$data = exec("searchd -c $conf_title.conf", $o);
+	$dataClean = '';
+	foreach($o as $d){
+		$dataClean .= $d . "<br />";
+		}
+	return$dataClean;
 });
 
 Route::get('chooseSource', 'SourcesController@chooseSource');

@@ -3,7 +3,7 @@
 
 <div class="row" style="margin-top:100px">
 	<div class="col-md-12 text-center">
-	<h2>{{ $conf_title }}.conf &nbsp; <a href="/Confs/save?conf_id={{$conf_id}}"><button class="btn btn-default">Save Configuration</button></a>
+	<h2>{{ $conf_title }}.conf &nbsp; <a href="/Confs/save?conf_id={{$conf_id}}"><button class="btn btn-primary">Save Configuration</button></a>
 </h2>
 		<h2>
 			<a href="/indices/create?type=plain&conf_id={{$conf_id}}"><button class="btn btn-default">Create another index</button></a>
@@ -67,7 +67,7 @@
 						<a href="/searchds/edit?type=plain&conf_id={{$conf_id}}&id={{$passSearchds[0]->searchd_id}}"><button class="btn btn-primary">Edit</button></a>
 </p>
 </div>
-@if(!empty($passIndexers[0])
+@if(!empty($passIndexers[0]))
 <div class="col-md-3">
 		<h2> Indexer: </h2>
 		<p>indexer {

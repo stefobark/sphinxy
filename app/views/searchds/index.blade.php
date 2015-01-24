@@ -3,13 +3,13 @@
 
 <div class="row" style="margin-top:100px">
 	<div class="col-md-12 text-center">
-	<h2>{{ $conf_title }}.conf</h2>
+	<h2>{{ $conf_title }}.conf  <a href="/Confs/save?conf_id={{$conf_id}}"><button class="btn btn-primary">Save</button></a></h2>
 		<h2>
 			<a href="/indices/create?type=plain&conf_id={{$conf_id}}"><button class="btn btn-default">Create another index</button></a>
 			<a href="/sources/create?type=plain&conf_id={{$conf_id}}"><button class="btn btn-default">Create another source</button></a>
 			<a href="/indexers/create?type=plain&conf_id={{$conf_id}}"><button class="btn btn-default">Define indexer settings</button></a>
 		</h2>
-		<p class="help-block">Great. We've got at least one index, one source, and we've told searchd what to do. Now would be a good time to set indexer settings.</p>
+		<p class="help-block">If you've got at least one index, one source, and one searchd config block,<br /> now would be a good time to set indexer settings, or  go save the file and start playing with your index(es).</p>
 	</div>
 </div>
 <div class="row">

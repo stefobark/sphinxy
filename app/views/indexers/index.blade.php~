@@ -67,6 +67,7 @@
 						<a href="/searchds/edit?type=plain&conf_id={{$conf_id}}&id={{$passSearchds[0]->searchd_id}}"><button class="btn btn-primary">Edit</button></a>
 </p>
 </div>
+@if(!empty($passIndexers[0]))
 <div class="col-md-3">
 		<h2> Indexer: </h2>
 		<p>indexer {
@@ -82,5 +83,5 @@
 			}<br /><br />
 						<a href="/indexers/edit?type=plain&conf_id={{$conf_id}}&id={{$passIndexers[0]->indexer_id}}"><button class="btn btn-primary">Edit</button></a>
 </p>
-
+@endif
 @stop

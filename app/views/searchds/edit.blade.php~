@@ -11,7 +11,7 @@
 		{{ Form::model($searchd, array('route' => array('searchds.update', $searchd->id), 'method' => 'put')) }}
 					<div class='form-group'>
 				<label for='listen'><a href='http://sphinxsearch.com/docs/current.html#conf-listen'>Where (and how) to listen (mandatory)</a></label><br />
-				<textarea style="width:300px!important" name='listen' placeholder="{{$searchd[0]->listen}}"></textarea>
+				<textarea style="width:300px!important" name='listen' placeholder="{{$searchd->listen}}"></textarea>
 			</div>
 			<div class='form-group'>
 				<label for='log'><a href='http://sphinxsearch.com/docs/current.html#conf-log'>Where to log searchd runtime events (mandatory)</a></label><br />

@@ -3,7 +3,7 @@
 <div class="row" style="margin-top:100px">
 	<div class="col-md-12 text-center">
 	<h2>All Configurations</h2>
-			<a href="/Confs/new"><button class="btn btn-default">Create another configuration</button></a><
+			<a href="/Confs/new"><button class="btn btn-default">Create another configuration</button></a>
 	</h2>
 	</div>
 </div>

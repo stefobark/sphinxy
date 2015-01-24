@@ -108,6 +108,7 @@ class ConfsController extends \BaseController {
 		
 		$path = public_path("$conf_title.conf");
     	File::append($path, $searchdContent);
+		$searchdLog = $passSearchds[0]->log;
 		
 		$passIndexers = DB::table('indexers')->join('confs', 'indexers.id', '=', 'indexer_id')->where('confs.id', '=', $conf_id)->get();
 		
@@ -125,6 +126,8 @@ class ConfsController extends \BaseController {
 		$path = public_path("$conf_title.conf");
     	File::append($path, $indexerContent);
     	}
+    	
+    	
     	
     	//put everything together so we can just spit it out in the view. again, check if there is any indexer content.
     	

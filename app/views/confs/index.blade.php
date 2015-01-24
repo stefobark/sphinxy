@@ -9,10 +9,12 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-	<h3>Edit</h3>
-	<ol>
 		@foreach ($confs as $conf)
-			<li><a href="/indexers?conf_id={{$conf->id}}&conf_title={{ $conf->title }}"><strong>{{$conf->title}}</strong></a></li>
+		<h3>{{$conf->title}}</h3>
+		<ul>
+			<li><a href="/indexers?conf_id={{$conf->id}}"><strong>Edit</strong></a></li>
+			<li><a href="/actions?conf_id={{$conf->id}}"><strong>Take Action</strong></li>
+		</ul>
 			@endforeach
 	</ol>
 	</div>

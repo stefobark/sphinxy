@@ -61,32 +61,19 @@ class SearchdsController extends \BaseController {
 		return Redirect::action('SearchdsController@index', array('conf_id'=> $conf_id));
 	}
 
-	/**
-	 * Display the specified searchd.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-	}
 
-	/**
-	 * Show the form for editing the specified searchd.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit()
 	{
 	
+	//get the configuration's id, get it's title, then get the id for the specific searchd block associated with this config
 		$conf_id = Input::get('conf_id');
 		$conf = Conf::find("$conf_id");
 		$conf_title = $conf->title;
 		$id = Input::get('id');
-
+	
+	//we pass this object (i think it's called an object), or this instance of the model, because we'll display the currently set values for this searchd block.
 		$searchd = Searchd::find($id);
-		
+	
 		return View::make('searchds.edit', compact('conf_id', 'conf_title', 'searchd'));
 		
 	}
@@ -100,12 +87,15 @@ class SearchdsController extends \BaseController {
 	public function update($id)
 	{
 	
+	//get the configuration id, query the model to get it's title.
 		$conf_id = Input::get('conf_id');
 		$conf = Conf::find("$conf_id");
 		$conf_title = $conf->title;
 		
+	//query the searchd model to find our specific searchd block
 		$searchd = Searchd::find($id);
-		
+	
+	//update that row if the input is not empty. otherwise, we assume that they don't want to change that setting
 		if(!empty(Input::get('listen'))){
 		
 			$searchd->listen = Input::get('listen');
@@ -123,11 +113,12 @@ class SearchdsController extends \BaseController {
 		
 		if(!empty(Input::get('pid_file'))){
 		
-			$searchd->pid = Input::get('pid_file');
+			$searchd->pid_file = Input::get('pid_file');
 		}
 	
 		$searchd->update();
-		
+	
+	//this query grabs the specific searchd row for this index (*there is only one searchd block per config*)
 		$passSearchds = DB::table('searchds')->join('confs', 'searchds.id', '=', 'searchd_id')->where('confs.id', '=', $conf_id)->get();
 
 				return Redirect::route('searchds.index', compact('conf_id', 'conf_title', 'passSearchds'));
